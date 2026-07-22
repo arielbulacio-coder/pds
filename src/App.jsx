@@ -6,6 +6,16 @@ function App() {
     const saved = localStorage.getItem('theme')
     return saved ? saved === 'dark' : true
   })
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+  }, [darkMode])
   
   const [activeTab, setActiveTab] = useState('comunicacion')
   const [activeClassIndex, setActiveClassIndex] = useState(0)
@@ -149,14 +159,47 @@ function App() {
       teacher: 'Lic. Prof. José Boimorto',
       role: 'Asignatura',
       icon: GraduationCap,
-      description: 'Estudio de los procesos de cambio psicológico que ocurren a lo largo del ciclo vital y su relación con el aprendizaje y los contextos educativos.',
-      demoTitle: 'Analizador de Casos Educativos',
-      demoDescription: 'Simulador interactivo para el análisis de situaciones áulicas basadas en teorías de Piaget y Vygotsky. Permite evaluar respuestas pedagógicas.',
-      placeholderProject: {
-        status: 'Disponible próximamente',
-        inputs: ['Edad del estudiante', 'Contexto socio-cultural', 'Desafío detectado'],
-        mockResult: 'Se evaluará el estadio de desarrollo cognitivo y se propondrán estrategias de andamiaje ajustadas al contexto.'
-      }
+      description: 'Estudio de los procesos de cambio psicológico a lo largo del ciclo vital y su relación con el aprendizaje y los contextos educativos.',
+      demoTitle: 'Actividad Integradora: Escuelas Argentinas',
+      demoDescription: 'Análisis psicológico-educativo sobre los capítulos de la serie documental de Canal Encuentro.',
+      consigna: {
+        title: 'Guía de la Actividad Integradora',
+        description: 'Integrar y aplicar aquellos conceptos trabajados en la materia a dos situaciones concretas que se relatan en los capítulos de la serie "Escuelas Argentinas".',
+        problem: 'Identificar elementos discordantes institucionales, clasificar tipos de aprendizaje y analizar el rol de la escuela en la adolescencia basándose en Vygotsky, Ausubel, Piaget y Bandura.',
+        courseTarget: 'Profesorado en Disciplinas Industriales'
+      },
+      videos: [
+        {
+          title: 'Escuela Orientada N.º 333 (Hernandarias, Santa Fe)',
+          url: 'https://www.youtube.com/embed?listType=search&list=Escuelas+Argentinas+Hernandarias'
+        },
+        {
+          title: 'Escuela de Educación Artística N.º 1 (Santiago del Estero)',
+          url: 'https://www.youtube.com/embed?listType=search&list=Escuelas+Argentinas+Gennero'
+        }
+      ],
+      analysis: [
+        {
+          title: 'Elementos Discordantes e Intercambio Áulico',
+          content: 'El elemento disruptivo es la ruptura del modelo tradicional pasivo. Los alumnos son productores activos. El intercambio observado responde a un modelo constructivista y socio-histórico, siendo dialógico y participativo, donde el docente actúa como guía.'
+        },
+        {
+          title: 'Tratamiento de Situaciones y Aprendizajes',
+          content: 'Frente a situaciones disruptivas, se fomenta el aprendizaje por descubrimiento. Observamos Aprendizaje Significativo (Ausubel) relacionando saberes previos con producción audiovisual, y Aprendizaje por Observación (Bandura) al imitar a pares y docentes.'
+        },
+        {
+          title: 'El Papel de la Escuela en la Adolescencia',
+          content: 'Se posiciona como un contexto básico de apoyo a la transición adolescente. Es un espacio intermedio entre lo infantil y lo adulto donde los jóvenes construyen su identidad, alejándose de la vulnerabilidad de la calle.'
+        },
+        {
+          title: 'Marcos Teóricos Aplicados',
+          content: 'Vygotsky: Activación de la Zona de Desarrollo Próximo (ZDP) mediante el andamiaje del docente o pares. Ausubel: Memorización comprensiva anclando nuevos saberes en los intereses previos. Piaget: Proceso de Asimilación, Conflicto Cognitivo y Acomodación.'
+        },
+        {
+          title: 'Conclusión de Ariel Bulacio',
+          content: 'La Psicología Educacional es una herramienta viva. Cuando a los jóvenes se les brinda un espacio donde son valorados, su motivación crece exponencialmente. El arte y la comunicación operan como verdaderos "andamiajes". Educar implica conectar profundamente con la identidad del otro.'
+        }
+      ]
     },
     {
       id: 'politicas',
@@ -877,6 +920,85 @@ function App() {
                     </div>
                   )}
                 </div>
+              ) : activeSubject.id === 'psico' ? (
+                // Psicologia View
+                <div className="p-6 sm:p-8 flex-1 flex flex-col gap-8 bg-slate-50 dark:bg-[#0a0d14]">
+                  {/* Header / Consigna */}
+                  <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 sm:p-8">
+                    <div className="flex flex-col md:flex-row gap-6 items-start justify-between">
+                      <div>
+                        <span className="text-xs font-bold text-blue-600 dark:text-blue-500 uppercase tracking-widest block mb-2">{activeSubject.consigna.title}</span>
+                        <h4 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Análisis Integradora</h4>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4 max-w-3xl">
+                          {activeSubject.consigna.description}
+                        </p>
+                        <div className="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-900/30 inline-block">
+                          <span className="text-xs font-bold text-blue-800 dark:text-blue-300 block mb-1">Problemática a Resolver:</span>
+                          <p className="text-sm font-medium text-blue-900 dark:text-blue-200 max-w-2xl">{activeSubject.consigna.problem}</p>
+                        </div>
+                      </div>
+                      <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 min-w-[280px] shrink-0">
+                        <span className="text-xs font-bold text-slate-400 uppercase block mb-3">Material Audiovisual</span>
+                        <div className="flex flex-col gap-3">
+                          {activeSubject.videos.map((vid, i) => (
+                            <button key={i} onClick={() => setActiveClassIndex(i)} className={`text-left p-3 rounded-xl transition-all border ${activeClassIndex === i ? 'bg-blue-600 border-blue-600 text-white shadow-md' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 hover:border-blue-300 text-slate-700 dark:text-slate-300'}`}>
+                              <div className="flex items-center gap-2 mb-1">
+                                <PlayCircle size={14} className={activeClassIndex === i ? 'text-blue-200' : 'text-blue-500'} />
+                                <span className="text-xs font-bold uppercase tracking-wider">Video {i+1}</span>
+                              </div>
+                              <span className="text-sm font-medium block truncate" title={vid.title}>{vid.title}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Layout for Video + Analysis */}
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+                    {/* Video Player */}
+                    <div className="xl:col-span-5 flex flex-col gap-4">
+                      <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-lg border border-slate-800 relative">
+                        {activeSubject.videos[activeClassIndex] ? (
+                          <iframe 
+                            src={activeSubject.videos[activeClassIndex].url}
+                            title={activeSubject.videos[activeClassIndex].title}
+                            className="w-full h-full absolute inset-0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-slate-500">
+                            No hay video seleccionado
+                          </div>
+                        )}
+                      </div>
+                      {activeSubject.videos[activeClassIndex] && (
+                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400 text-center">
+                          Viendo: <span className="text-slate-800 dark:text-slate-200">{activeSubject.videos[activeClassIndex].title}</span>
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Analysis Content */}
+                    <div className="xl:col-span-7 flex flex-col gap-4">
+                      <h5 className="font-black text-xl text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+                        <BookOpen size={24} className="text-blue-500" />
+                        Desarrollo y Resolución
+                      </h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {activeSubject.analysis.map((item, idx) => (
+                          <div key={idx} className={`p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm transition-all hover:shadow-md ${idx === activeSubject.analysis.length - 1 ? 'md:col-span-2 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/10 border-blue-200 dark:border-blue-900/30' : 'bg-white dark:bg-slate-900'}`}>
+                            <span className="text-xs font-bold text-blue-500 dark:text-blue-400 uppercase tracking-widest block mb-3">{item.title}</span>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                              {item.content}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ) : (
                 // Default placeholders view for other tabs
                 <div className="p-8 flex-1 flex flex-col gap-8 items-center justify-center bg-slate-50 dark:bg-[#0a0d14] text-center">
@@ -894,7 +1016,7 @@ function App() {
                     <div className="p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-4">Inputs Simulados (En Desarrollo)</span>
                       <div className="flex flex-col gap-3 mb-6">
-                        {activeSubject.placeholderProject.inputs.map((inp, idx) => (
+                        {activeSubject.placeholderProject?.inputs?.map((inp, idx) => (
                           <div key={idx} className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-100 dark:border-slate-800/60">
                             <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 block">{inp}</span>
                           </div>
@@ -903,7 +1025,7 @@ function App() {
                       <div className="p-4 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
                         <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase block mb-1">Salida Esperada</span>
                         <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                          {activeSubject.placeholderProject.mockResult}
+                          {activeSubject.placeholderProject?.mockResult}
                         </p>
                       </div>
                     </div>
