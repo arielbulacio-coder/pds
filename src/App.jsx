@@ -121,6 +121,8 @@ function App() {
           episode: 'White Christmas (S02E04)',
           concept: 'Ciclo de instrucción y privilegios de Kernel vs. Usuario.',
           challengeDescription: 'Controla el simulador de CPU del dispositivo "Cookie". Ejecuta instrucciones y vigila el nivel de estabilidad cognitiva del clon digital.',
+          youtubeUrl: 'https://www.youtube.com/embed/R32qYLMsdn4',
+          relationText: 'En "White Christmas", la consciencia clonada (Cookie) corre como un proceso virtual aislado dentro de una carcasa de hardware inteligente. El programador (u operador de control) manipula el tiempo del sistema acelerándolo de forma artificial, lo que representa de forma alegórica el reloj del sistema (System Clock) de una CPU. Además, la Cookie carece de privilegios sobre el entorno de control (no tiene acceso al modo Kernel físico), limitándose a ejecutar las tareas de usuario asignadas sin soberanía sobre su propia base sistémica.',
           type: 'cpu'
         },
         {
@@ -129,6 +131,8 @@ function App() {
           episode: 'Nosedive (S03E01)',
           concept: 'Representación binaria y lógica booleana aplicada a redes sociales.',
           challengeDescription: 'Configura las interacciones y calcula la puntuación en tiempo real. Observa cómo influye el sesgo del algoritmo.',
+          youtubeUrl: 'https://www.youtube.com/embed/R32qYLMsdn4',
+          relationText: 'El episodio "Nosedive" presenta una sociedad cuantificada donde el valor humano se reduce a una puntuación binaria de base flotante (0.0 a 5.0). Este sistema procesa la lógica booleana condicional para determinar los privilegios reales del ciudadano (SI calificación < X ENTONCES denegar acceso). Los sesgos de información y las burbujas de filtro se magnifican, mostrando que el diseño de un algoritmo matemático no es neutral, sino que produce exclusión y altera los modelos de comunicación social.',
           type: 'rating'
         },
         {
@@ -137,6 +141,8 @@ function App() {
           episode: 'Shut Up and Dance (S03E03)',
           concept: 'Vulnerabilidades comunes, malware y pérdida de confidencialidad.',
           challengeDescription: 'Audita un sistema simulado apagando o encendiendo los principios de la Tríada CIA para observar las repercusiones.',
+          youtubeUrl: 'https://www.youtube.com/embed/vUtizY-V_m4',
+          relationText: 'En "Shut Up and Dance", se evidencia el colapso absoluto del principio de Confidencialidad de la Tríada CIA. Un malware instalado en la máquina local del protagonista exfiltra sus archivos y registro de actividad a un servidor externo. Esta vulnerabilidad humana y técnica permite que atacantes controlen de forma externa al usuario mediante ingeniería social, resaltando la importancia del cifrado, los cortafuegos y las políticas de privacidad de datos en entornos interconectados.',
           type: 'security'
         },
         {
@@ -145,6 +151,8 @@ function App() {
           episode: 'Joan Is Awful (S06E01)',
           concept: 'Automatización, IA, privacidad legal y soberanía del usuario.',
           challengeDescription: 'Modifica los permisos contractuales del usuario. Comprueba el nivel de riesgo de expropiación de identidad.',
+          youtubeUrl: 'https://www.youtube.com/embed/jDiygmpZITY',
+          relationText: 'En "Joan Is Awful", la protagonista cede involuntariamente su identidad digital al aceptar los Términos de Servicio (ToS) abusivos de una plataforma de streaming. Una supercomputadora cuántica procesa su vida en tiempo real a través de inteligencia artificial generativa, creando un avatar digital con su imagen. La relación ilustra cómo el ecosistema de software propietario y la automatización corporativa despojan al usuario de su soberanía tecnológica cuando no existe una formación ética y crítica sobre las licencias y la protección de datos.',
           type: 'tos'
         }
       ]
@@ -363,6 +371,27 @@ function App() {
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-950 p-3 rounded-lg border border-slate-250/40 dark:border-slate-800">
                     {activeSubject.classes[activeClassIndex].challengeDescription}
                   </p>
+
+                  {/* YouTube Video Embed */}
+                  {activeSubject.classes[activeClassIndex].youtubeUrl && (
+                    <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner bg-slate-100 dark:bg-slate-950">
+                      <iframe
+                        src={activeSubject.classes[activeClassIndex].youtubeUrl}
+                        title={activeSubject.classes[activeClassIndex].episode}
+                        className="absolute inset-0 w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  )}
+
+                  {/* Relación Trama-Concepto */}
+                  <div className="bg-blue-50/30 dark:bg-slate-900/50 p-4 rounded-xl border border-blue-100/50 dark:border-slate-850 flex flex-col gap-1.5 text-xs text-slate-700 dark:text-slate-300">
+                    <span className="font-bold text-blue-900 dark:text-blue-400 block text-xs">Relación Trama y Conceptos a Explicar:</span>
+                    <p className="leading-relaxed">
+                      {activeSubject.classes[activeClassIndex].relationText}
+                    </p>
+                  </div>
 
                   {/* Dynamic Simulators */}
                   <div className="flex-1 flex flex-col justify-center bg-slate-50 dark:bg-slate-950 p-6 rounded-xl border border-dashed border-slate-200 dark:border-slate-850 gap-4">
