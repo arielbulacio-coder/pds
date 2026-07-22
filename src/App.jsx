@@ -501,23 +501,7 @@ function App() {
               </div>
             )}
 
-            {/* CI/CD Card */}
-            <div className="bg-slate-900 text-slate-300 p-6 rounded-3xl border border-slate-800 flex flex-col gap-4 shadow-xl">
-              <div className="flex items-center gap-2 text-blue-400">
-                <Code size={18} />
-                <h4 className="font-bold text-sm uppercase tracking-widest text-white">CI/CD Automatizado</h4>
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Este portfolio se compila mediante GitHub Actions y se despliega directamente en GitHub Pages con cada commit en la rama principal.
-              </p>
-              <div className="flex items-center gap-2 mt-2 text-xs font-medium text-emerald-400 bg-emerald-950/30 p-3 rounded-xl border border-emerald-900/50">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
-                <span>Deploy en vivo funcionando.</span>
-              </div>
-            </div>
+
           </div>
 
           {/* Right Main Interactive Area */}
