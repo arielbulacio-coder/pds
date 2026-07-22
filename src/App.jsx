@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BookOpen, Moon, Sun, Monitor, Code, ExternalLink, GraduationCap, Award, Compass, Shield, Cpu, RefreshCw, AlertTriangle, Eye, Sliders } from 'lucide-react'
+import { Moon, Sun, Code, ExternalLink, GraduationCap, Award, Compass, RefreshCw, AlertTriangle, PlayCircle, BookOpen, User, Info, FileText } from 'lucide-react'
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -7,12 +7,13 @@ function App() {
     return saved ? saved === 'dark' : true
   })
   
-  const [activeTab, setActiveTab] = useState('comunicacion') // Default to 'comunicacion' to showcase the work
+  const [activeTab, setActiveTab] = useState('comunicacion')
   const [activeClassIndex, setActiveClassIndex] = useState(0)
+  const [showVideo, setShowVideo] = useState(false)
 
   // Simulator States
   // Class 1: Instruction cycle
-  const [cpuStep, setCpuStep] = useState('idle') // idle, fetch, decode, execute
+  const [cpuStep, setCpuStep] = useState('idle') 
   const [cpuClock, setCpuClock] = useState(0)
   const [cookieSanity, setCookieSanity] = useState(100)
   
@@ -40,6 +41,10 @@ function App() {
       localStorage.setItem('theme', 'light')
     }
   }, [darkMode])
+
+  useEffect(() => {
+    setShowVideo(false)
+  }, [activeClassIndex, activeTab])
 
   // Class 1 logic simulator
   const handleCpuTick = () => {
@@ -76,6 +81,69 @@ function App() {
 
   const subjects = [
     {
+      id: 'comunicacion',
+      name: 'Modelos de Comunicación',
+      teacher: 'Mónica Delia Bardi',
+      role: 'Docente',
+      icon: Compass,
+      description: 'Análisis de dinámicas interaccionales y mediación tecnológica. Desarrollo de habilidades para la enseñanza en entornos híbridos y digitales.',
+      demoTitle: 'Proyecto Final: Docentes Seriales',
+      demoDescription: 'Plataforma interactiva que fusiona la serie "Black Mirror" con los contenidos técnicos de "Fundamentos de la Computación".',
+      consigna: {
+        title: 'Consigna del Taller: Reinventar la clase',
+        description: 'Según las autoras Litwin y Maggio, la clase tradicional lineal está en crisis. La consigna requiere diseñar un seminario de nivel superior (4 clases) estructurado a partir de una serie televisiva contemporánea. El objetivo es identificar una problemática educativa y proponer una "didáctica en vivo" que descentre el conocimiento y fomente la reflexión crítica.',
+        problem: 'La enseñanza de "Fundamentos de la Computación" suele ser puramente técnica e instrumental, ignorando el impacto ético de las arquitecturas de hardware y el software en la sociedad posdigital.',
+        student: 'Ariel Bulacio',
+        courseTarget: 'Tecnicatura Universitaria en Desarrollo de Software'
+      },
+      classes: [
+        {
+          title: 'Clase 1: La Arquitectura del Control',
+          subtitle: 'Modelo Von Neumann & CPU',
+          episode: 'White Christmas (S02E04)',
+          concept: 'Ciclo de instrucción y privilegios de Kernel vs. Usuario.',
+          challengeDescription: 'Simulación de la manipulación de una "Cookie" (consciencia digital clonada) para entender los ciclos de reloj de una CPU y las jerarquías de privilegios.',
+          youtubeUrl: 'https://www.youtube.com/watch?v=O-LGG30Hl2U',
+          imageUrl: 'assets/class1.png',
+          relationText: 'En "White Christmas", la consciencia clonada (Cookie) corre como un proceso virtual aislado dentro de una carcasa de hardware. El programador manipula el tiempo del sistema acelerándolo artificialmente, lo que representa alegóricamente el Reloj del Sistema (System Clock) de una CPU. Según la Unidad 1 del programa de Fundamentos de Computación, la CPU ejecuta el ciclo Fetch-Decode-Execute. La Cookie carece de privilegios sobre el entorno (modo Kernel), limitándose a ejecutar tareas de usuario sin soberanía. Esto ilustra el control arquitectónico del Hardware sobre el Software.',
+          type: 'cpu'
+        },
+        {
+          title: 'Clase 2: Datos, Algoritmos y Burbujas',
+          subtitle: 'Lógica Digital y Algoritmos Sociales',
+          episode: 'Nosedive (S03E01)',
+          concept: 'Representación digital, lógica booleana y sesgos.',
+          challengeDescription: 'Calculadora de reputación social que demuestra cómo la lógica booleana condicional rige nuestras interacciones en plataformas digitales.',
+          youtubeUrl: 'https://www.youtube.com/watch?v=R94yH3pL1zE',
+          imageUrl: 'assets/class2.png',
+          relationText: 'El episodio "Nosedive" presenta una sociedad cuantificada donde el valor humano se reduce a un número decimal de coma flotante. Este sistema procesa la lógica booleana condicional para asignar privilegios (SI calificación < X ENTONCES denegar acceso). Abordando la Unidad 3 (Representación de Datos y Lógica Digital), la serie nos permite evaluar críticamente cómo la codificación booleana y los algoritmos influyen en la creación de "burbujas de filtro". Demuestra que el diseño de un algoritmo matemático no es neutral, sino que produce estratificación y exclusión social.',
+          type: 'rating'
+        },
+        {
+          title: 'Clase 3: Ciberseguridad y el Alma Digital',
+          subtitle: 'Sistemas Operativos y la Tríada CIA',
+          episode: 'Shut Up and Dance (S03E03)',
+          concept: 'Vulnerabilidades, malware y la Tríada de Seguridad.',
+          challengeDescription: 'Audita un sistema simulado encendiendo o apagando los principios de la Tríada CIA para observar el impacto crítico de las vulnerabilidades.',
+          youtubeUrl: 'https://www.youtube.com/watch?v=jDiZYao1iug',
+          imageUrl: 'assets/class3.png',
+          relationText: 'En "Shut Up and Dance", evidenciamos el colapso absoluto de la Confidencialidad de la Tríada CIA (Confidencialidad, Integridad, Disponibilidad), concepto central de la Unidad 4. Un malware exfiltra los archivos privados del protagonista a un servidor externo. Esta vulnerabilidad de seguridad permite que atacantes lo extorsionen mediante ingeniería social. El episodio funciona como caso de estudio fundamental para debatir la responsabilidad ética del profesional en sistemas y la importancia crítica de la protección de datos en entornos interconectados.',
+          type: 'security'
+        },
+        {
+          title: 'Clase 4: Ética en la Era Posdigital',
+          subtitle: 'IA Generativa & Contratos Digitales',
+          episode: 'Joan Is Awful (S06E01)',
+          concept: 'El rol del software, IA generativa y soberanía del usuario.',
+          challengeDescription: 'Modifica los permisos contractuales (ToS) y comprueba el nivel de riesgo de expropiación de identidad frente a la computación cuántica y la IA.',
+          youtubeUrl: 'https://www.youtube.com/watch?v=5jY1ecibLYo',
+          imageUrl: 'assets/class4.png',
+          relationText: 'La protagonista de "Joan Is Awful" cede su identidad digital al aceptar los Términos de Servicio (ToS) abusivos de una plataforma de streaming. Una supercomputadora procesa su vida en tiempo real usando Inteligencia Artificial generativa. Esto conecta con la Unidad 2 (El rol del Software y Cultura Digital). La serie ilustra magistralmente cómo el ecosistema de software propietario puede despojar al usuario de su soberanía tecnológica, planteando un debate ético urgente sobre la automatización y los límites legales de la tecnología moderna.',
+          type: 'tos'
+        }
+      ]
+    },
+    {
       id: 'psico',
       name: 'Psicología del desarrollo humano y Educacional',
       teacher: 'Lic. Prof. José Boimorto',
@@ -87,7 +155,7 @@ function App() {
       placeholderProject: {
         status: 'Disponible próximamente',
         inputs: ['Edad del estudiante', 'Contexto socio-cultural', 'Desafío detectado'],
-        mockResult: 'Se evaluará el estadio de desarrollo y se propondrán estrategias de andamiaje ajustadas.'
+        mockResult: 'Se evaluará el estadio de desarrollo cognitivo y se propondrán estrategias de andamiaje ajustadas al contexto.'
       }
     },
     {
@@ -101,126 +169,86 @@ function App() {
       demoDescription: 'Plataforma interactiva de visualización y mapeo de iniciativas educativas públicas, identificando la cobertura territorial e impacto.',
       placeholderProject: {
         status: 'Disponible próximamente',
-        inputs: ['Jurisdicción', 'Nivel Educativo', 'Eje de Acción (Inclusión, Tecnología)'],
-        mockResult: 'Se mapeará el alcance socioeducativo y se emitirá un reporte comparativo de normativas aplicables.'
+        inputs: ['Jurisdicción', 'Nivel Educativo', 'Eje de Acción'],
+        mockResult: 'Se mapeará el alcance socioeducativo y se emitirá un reporte comparativo de normativas aplicables vigentes.'
       }
-    },
-    {
-      id: 'comunicacion',
-      name: 'Modelos de Comunicación',
-      teacher: 'Mónica Delia Bardi',
-      role: 'Docente',
-      icon: Compass,
-      description: 'Análisis de dinámicas interaccionales y mediación tecnológica. Proyecto "Docentes Seriales": Seminario de formación docente en la intersección de Black Mirror y Fundamentos de la Computación.',
-      demoTitle: 'Entorno Interactivo: Docentes Seriales',
-      demoDescription: 'Diseño curricular gamificado que hackea el método tradicional. Selecciona una clase para interactuar con los simuladores conceptuales.',
-      classes: [
-        {
-          title: 'Clase 1: La Arquitectura del Control',
-          subtitle: 'Modelo Von Neumann & CPU',
-          episode: 'White Christmas (S02E04)',
-          concept: 'Ciclo de instrucción y privilegios de Kernel vs. Usuario.',
-          challengeDescription: 'Controla el simulador de CPU del dispositivo "Cookie". Ejecuta instrucciones y vigila el nivel de estabilidad cognitiva del clon digital.',
-          youtubeUrl: 'https://www.youtube.com/embed/R32qYLMsdn4',
-          relationText: 'En "White Christmas", la consciencia clonada (Cookie) corre como un proceso virtual aislado dentro de una carcasa de hardware inteligente. El programador (u operador de control) manipula el tiempo del sistema acelerándolo de forma artificial, lo que representa de forma alegórica el reloj del sistema (System Clock) de una CPU. Además, la Cookie carece de privilegios sobre el entorno de control (no tiene acceso al modo Kernel físico), limitándose a ejecutar las tareas de usuario asignadas sin soberanía sobre su propia base sistémica.',
-          type: 'cpu'
-        },
-        {
-          title: 'Clase 2: Datos, Algoritmos y Burbujas',
-          subtitle: 'Sistemas Numéricos & Sesgos',
-          episode: 'Nosedive (S03E01)',
-          concept: 'Representación binaria y lógica booleana aplicada a redes sociales.',
-          challengeDescription: 'Configura las interacciones y calcula la puntuación en tiempo real. Observa cómo influye el sesgo del algoritmo.',
-          youtubeUrl: 'https://www.youtube.com/embed/R32qYLMsdn4',
-          relationText: 'El episodio "Nosedive" presenta una sociedad cuantificada donde el valor humano se reduce a una puntuación binaria de base flotante (0.0 a 5.0). Este sistema procesa la lógica booleana condicional para determinar los privilegios reales del ciudadano (SI calificación < X ENTONCES denegar acceso). Los sesgos de información y las burbujas de filtro se magnifican, mostrando que el diseño de un algoritmo matemático no es neutral, sino que produce exclusión y altera los modelos de comunicación social.',
-          type: 'rating'
-        },
-        {
-          title: 'Clase 3: Ciberseguridad y Tríada CIA',
-          subtitle: 'Confidencialidad, Integridad, Disponibilidad',
-          episode: 'Shut Up and Dance (S03E03)',
-          concept: 'Vulnerabilidades comunes, malware y pérdida de confidencialidad.',
-          challengeDescription: 'Audita un sistema simulado apagando o encendiendo los principios de la Tríada CIA para observar las repercusiones.',
-          youtubeUrl: 'https://www.youtube.com/embed/vUtizY-V_m4',
-          relationText: 'En "Shut Up and Dance", se evidencia el colapso absoluto del principio de Confidencialidad de la Tríada CIA. Un malware instalado en la máquina local del protagonista exfiltra sus archivos y registro de actividad a un servidor externo. Esta vulnerabilidad humana y técnica permite que atacantes controlen de forma externa al usuario mediante ingeniería social, resaltando la importancia del cifrado, los cortafuegos y las políticas de privacidad de datos en entornos interconectados.',
-          type: 'security'
-        },
-        {
-          title: 'Clase 4: Ética en la Era Posdigital',
-          subtitle: 'IA Generativa & Términos de Servicio',
-          episode: 'Joan Is Awful (S06E01)',
-          concept: 'Automatización, IA, privacidad legal y soberanía del usuario.',
-          challengeDescription: 'Modifica los permisos contractuales del usuario. Comprueba el nivel de riesgo de expropiación de identidad.',
-          youtubeUrl: 'https://www.youtube.com/embed/jDiygmpZITY',
-          relationText: 'En "Joan Is Awful", la protagonista cede involuntariamente su identidad digital al aceptar los Términos de Servicio (ToS) abusivos de una plataforma de streaming. Una supercomputadora cuántica procesa su vida en tiempo real a través de inteligencia artificial generativa, creando un avatar digital con su imagen. La relación ilustra cómo el ecosistema de software propietario y la automatización corporativa despojan al usuario de su soberanía tecnológica cuando no existe una formación ética y crítica sobre las licencias y la protección de datos.',
-          type: 'tos'
-        }
-      ]
     }
   ]
 
   const activeSubject = subjects.find(s => s.id === activeTab)
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 flex flex-col transition-colors duration-300">
-      {/* Header */}
-      <header className="border-b border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <img 
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZGaBEBRKRQX3r3_GoTgyPfQx9K2oeZtXouFTLid5AYw&s=10" 
-              alt="UTN Logo" 
-              className="h-16 w-auto object-contain rounded-md bg-white p-1 shadow-sm border border-slate-200 dark:border-slate-700"
-            />
+    <div className="min-h-screen bg-slate-50 text-slate-800 dark:bg-[#0a0d14] dark:text-slate-200 font-sans transition-colors duration-500 selection:bg-blue-500/30">
+      
+      {/* Premium Header */}
+      <header className="border-b border-slate-200/80 dark:border-slate-800/60 bg-white/70 dark:bg-[#0a0d14]/70 backdrop-blur-xl sticky top-0 z-50 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-5">
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-slate-400 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+              <img 
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZGaBEBRKRQX3r3_GoTgyPfQx9K2oeZtXouFTLid5AYw&s=10" 
+                alt="UTN Logo" 
+                className="relative h-14 w-auto object-contain rounded-md bg-white p-1.5 ring-1 ring-slate-200 dark:ring-slate-800 shadow-sm"
+              />
+            </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-blue-900 dark:text-blue-450">
-                Profesorado en Docencia Superior UTN
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                Profesorado en Docencia Superior <span className="text-blue-600 dark:text-blue-500">UTN</span>
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
-                Universidad Tecnológica Nacional · Instituto Superior del Profesorado Técnico
+                Instituto Superior del Profesorado Técnico
               </p>
             </div>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 text-xs font-semibold text-blue-700 dark:text-blue-400">
+              <User size={14} />
+              <span>Alumno: Ariel Bulacio</span>
+            </div>
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-350 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shadow-sm cursor-pointer"
+              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/80 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm cursor-pointer"
               title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
               aria-label="Toggle theme"
             >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </div>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8 flex flex-col gap-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-10">
         
-        {/* Intro Hero Section */}
-        <section className="bg-gradient-to-r from-blue-900/10 via-slate-850/5 to-transparent dark:from-blue-950/40 dark:via-slate-900/20 dark:to-transparent rounded-2xl p-6 sm:p-8 border border-slate-200/50 dark:border-slate-800/50 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 mb-4">
-              <BookOpen size={13} />
+        {/* Dynamic Hero Section */}
+        <section className="relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-slate-900 to-black z-0"></div>
+          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl z-0"></div>
+          
+          <div className="relative z-10 p-8 sm:p-12 lg:p-16 flex flex-col items-start max-w-4xl">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-6 backdrop-blur-sm">
+              <BookOpen size={14} />
               Portfolio de Trabajos Finales
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">
-              Plataforma de Demostración en Vivo
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6">
+              Plataforma de <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-200">Demostración en Vivo</span>
             </h2>
-            <p className="mt-3 text-slate-600 dark:text-slate-350 leading-relaxed text-base sm:text-lg">
-              Espacio curricular dedicado a exponer el funcionamiento real e interactivo de los proyectos finales elaborados para el Profesorado en Docencia Superior.
+            <p className="text-lg sm:text-xl text-slate-300 leading-relaxed font-light max-w-2xl">
+              Un espacio inmersivo diseñado para exponer el funcionamiento real y pedagógico de los proyectos finales desarrollados durante el Profesorado.
             </p>
           </div>
         </section>
 
         {/* Navigation Tabs */}
-        <div className="flex flex-col gap-2">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">
-            Materias Seleccionadas
+        <div className="flex flex-col gap-3">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 px-1 flex items-center gap-2">
+            <FileText size={16} />
+            Materias del Semestre
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 bg-slate-200/60 dark:bg-slate-900/60 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800/80">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {subjects.map((sub) => {
               const Icon = sub.icon
               const isSelected = activeTab === sub.id
@@ -231,25 +259,25 @@ function App() {
                     setActiveTab(sub.id)
                     setActiveClassIndex(0)
                   }}
-                  className={`flex items-start gap-3 p-3.5 rounded-xl text-left transition-all duration-200 cursor-pointer ${
+                  className={`group flex items-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${
                     isSelected 
-                      ? 'bg-white dark:bg-slate-800 text-blue-900 dark:text-white shadow-sm ring-1 ring-slate-200/50 dark:ring-slate-700/50' 
-                      : 'hover:bg-white/50 dark:hover:bg-slate-850/50 text-slate-600 dark:text-slate-400'
+                      ? 'bg-white dark:bg-slate-900 border-blue-300 dark:border-blue-800/60 shadow-lg shadow-blue-900/5 ring-1 ring-blue-500/20' 
+                      : 'bg-white/50 dark:bg-slate-900/30 border-slate-200 dark:border-slate-800/60 hover:bg-white dark:hover:bg-slate-800/80 hover:shadow-md'
                   }`}
                 >
-                  <div className={`p-2.5 rounded-lg shrink-0 transition-colors ${
+                  <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${
                     isSelected 
-                      ? 'bg-blue-100 dark:bg-blue-950/70 text-blue-950 dark:text-blue-300' 
-                      : 'bg-slate-300/40 dark:bg-slate-850/70 text-slate-500'
+                      ? 'bg-blue-600 text-white shadow-md' 
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400'
                   }`}>
-                    <Icon size={18} />
+                    <Icon size={22} strokeWidth={isSelected ? 2.5 : 2} />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-sm leading-snug line-clamp-1">
+                  <div className="pt-0.5">
+                    <h4 className={`font-bold text-base leading-tight mb-1 ${isSelected ? 'text-blue-950 dark:text-white' : 'text-slate-700 dark:text-slate-300'}`}>
                       {sub.name}
                     </h4>
-                    <p className="text-xs mt-0.5 opacity-80 line-clamp-1">
-                      {sub.teacher}
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                      Docente: {sub.teacher}
                     </p>
                   </div>
                 </button>
@@ -258,209 +286,271 @@ function App() {
           </div>
         </div>
 
-        {/* Tab Detail view */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Info Card */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4">
-              <div>
-                <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest block mb-1">
-                  Detalles de la Cátedra
-                </span>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white leading-snug">
-                  {activeSubject.name}
-                </h3>
-              </div>
-
-              <div className="border-t border-slate-100 dark:border-slate-800/80 pt-4 flex flex-col gap-3">
-                <div>
-                  <span className="text-xs text-slate-400 dark:text-slate-500 block">Docencia</span>
-                  <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">{activeSubject.teacher}</span>
-                </div>
-                {activeSubject.id === 'comunicacion' && (
-                  <div>
-                    <span className="text-xs text-slate-400 dark:text-slate-500 block">Proyecto Didáctico</span>
-                    <span className="text-sm font-bold text-blue-700 dark:text-blue-400">Docentes Seriales</span>
-                  </div>
-                )}
-                <div>
-                  <span className="text-xs text-slate-400 dark:text-slate-500 block">Descripción Curricular</span>
-                  <p className="text-xs mt-1 text-slate-500 dark:text-slate-400 leading-relaxed">
-                    {activeSubject.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Class Selector for Docentes Seriales */}
+        {/* Tab Detail View */}
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+          
+          {/* Left Sidebar Info */}
+          <div className="xl:col-span-4 flex flex-col gap-6">
+            
+            {/* Consigna & Context Card */}
             {activeSubject.id === 'comunicacion' && (
-              <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-2">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider px-2">Clases del Seminario</span>
-                {activeSubject.classes.map((cls, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveClassIndex(idx)}
-                    className={`w-full text-left p-3 rounded-xl transition-all text-xs cursor-pointer ${
-                      activeClassIndex === idx 
-                        ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-900 dark:text-blue-300 border border-blue-200 dark:border-blue-900/40 font-semibold' 
-                        : 'hover:bg-slate-50 dark:hover:bg-slate-850 text-slate-600 dark:text-slate-400 border border-transparent'
-                    }`}
-                  >
-                    <div className="flex justify-between items-center mb-0.5">
-                      <span>{cls.title}</span>
-                      <span className="text-[10px] opacity-75 font-normal">{cls.episode.split(' ')[0]}</span>
+              <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 dark:bg-blue-500/10 rounded-bl-full -z-0"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Info size={18} className="text-blue-600 dark:text-blue-400" />
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                      Contexto del Trabajo Práctico
+                    </h3>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-base font-bold text-blue-700 dark:text-blue-400 mb-1">{activeSubject.consigna.title}</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {activeSubject.consigna.description}
+                      </p>
                     </div>
-                    <span className="text-[10px] opacity-70 block truncate">{cls.concept}</span>
-                  </button>
-                ))}
+                    
+                    <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800">
+                      <span className="block text-xs font-semibold text-slate-500 dark:text-slate-500 uppercase tracking-wider mb-2">Problemática Detectada</span>
+                      <p className="text-sm text-slate-700 dark:text-slate-300 font-medium italic">
+                        "{activeSubject.consigna.problem}"
+                      </p>
+                    </div>
+
+                    <ul className="text-xs space-y-2 text-slate-600 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+                      <li><strong className="text-slate-800 dark:text-slate-200">Asignatura a enseñar:</strong> Fundamentos de la Computación</li>
+                      <li><strong className="text-slate-800 dark:text-slate-200">Destinatarios:</strong> {activeSubject.consigna.courseTarget}</li>
+                      <li><strong className="text-slate-800 dark:text-slate-200">Serie elegida:</strong> Black Mirror (Netflix)</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             )}
 
-            <div className="bg-slate-900 text-slate-350 p-6 rounded-2xl border border-slate-850 flex flex-col gap-4 shadow-sm">
+            {/* Class Selector for Docentes Seriales */}
+            {activeSubject.id === 'comunicacion' && (
+              <div className="bg-white dark:bg-slate-900 p-5 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-3">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Clases del Seminario</span>
+                <div className="flex flex-col gap-2">
+                  {activeSubject.classes.map((cls, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveClassIndex(idx)}
+                      className={`w-full text-left p-4 rounded-2xl transition-all cursor-pointer border ${
+                        activeClassIndex === idx 
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-md transform scale-[1.02]' 
+                          : 'bg-slate-50 dark:bg-[#0f1420] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-800/50 hover:bg-white dark:hover:bg-slate-800'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-1.5">
+                        <span className="font-bold text-sm leading-tight pr-4">{cls.title}</span>
+                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
+                          activeClassIndex === idx ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-500'
+                        }`}>
+                          {cls.episode.split(' ')[0]}
+                        </span>
+                      </div>
+                      <span className={`text-xs block leading-relaxed ${activeClassIndex === idx ? 'text-blue-100' : 'opacity-80'}`}>
+                        {cls.subtitle}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Info Card (Other Subjects) */}
+            {activeSubject.id !== 'comunicacion' && (
+              <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest block mb-2">
+                  Detalles de la Cátedra
+                </span>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug mb-4">
+                  {activeSubject.name}
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                  {activeSubject.description}
+                </p>
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+                  <span className="text-xs text-slate-400 block mb-1">Responsable</span>
+                  <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{activeSubject.teacher}</span>
+                </div>
+              </div>
+            )}
+
+            {/* CI/CD Card */}
+            <div className="bg-slate-900 text-slate-300 p-6 rounded-3xl border border-slate-800 flex flex-col gap-4 shadow-xl">
               <div className="flex items-center gap-2 text-blue-400">
                 <Code size={18} />
-                <h4 className="font-bold text-sm uppercase tracking-wider text-white">CI/CD Automatizado</h4>
+                <h4 className="font-bold text-sm uppercase tracking-widest text-white">CI/CD Automatizado</h4>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Este sitio se compila mediante GitHub Actions y se despliega directamente en GitHub Pages con cada cambio detectado en la rama principal.
+                Este portfolio se compila mediante GitHub Actions y se despliega directamente en GitHub Pages con cada commit en la rama principal.
               </p>
-              <div className="flex items-center gap-2 mt-1 text-[11px] text-blue-300 bg-blue-950/60 p-2 rounded-lg border border-blue-900/30">
-                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <div className="flex items-center gap-2 mt-2 text-xs font-medium text-emerald-400 bg-emerald-950/30 p-3 rounded-xl border border-emerald-900/50">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
                 <span>Deploy en vivo funcionando.</span>
               </div>
             </div>
           </div>
 
-          {/* Interactive Live Demo Area */}
-          <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md overflow-hidden flex flex-col h-full min-h-[480px]">
-              {/* Demo Header */}
-              <div className="bg-slate-50 dark:bg-slate-900/60 px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Monitor size={18} className="text-blue-600 dark:text-blue-400" />
-                  <span className="font-bold text-sm text-slate-700 dark:text-slate-300">
-                    {activeSubject.id === 'comunicacion' ? 'Simulador Didáctico: Docentes Seriales' : 'Entorno del Trabajo Final'}
-                  </span>
+          {/* Right Main Interactive Area */}
+          <div className="xl:col-span-8">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col h-full min-h-[700px]">
+              
+              {/* Header */}
+              <div className="bg-slate-50 dark:bg-slate-900/60 px-6 sm:px-8 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                  <h3 className="font-black text-lg text-slate-900 dark:text-white flex items-center gap-2">
+                    {activeSubject.id === 'comunicacion' ? 'Simulador Pedagógico: Docentes Seriales' : 'Entorno del Trabajo Final'}
+                  </h3>
+                  <p className="text-xs font-medium text-slate-500 mt-1">
+                    {activeSubject.id === 'comunicacion' ? 'Integración de teoría computacional y cultura audiovisual' : 'Espacio de simulación de proyectos'}
+                  </p>
                 </div>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-250 dark:border-emerald-900/30">
-                  {activeSubject.id === 'comunicacion' ? 'Simulador Activo' : 'Próximamente'}
+                <span className={`text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full border ${
+                  activeSubject.id === 'comunicacion' 
+                    ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800' 
+                    : 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800'
+                }`}>
+                  {activeSubject.id === 'comunicacion' ? 'Activo' : 'Boceto'}
                 </span>
               </div>
 
-              {/* Demo body */}
+              {/* Body */}
               {activeSubject.id === 'comunicacion' ? (
-                // Docentes Seriales Dashboard View
-                <div className="p-6 flex-1 flex flex-col gap-6">
-                  {/* Title and details */}
-                  <div>
-                    <span className="text-xs text-blue-600 dark:text-blue-400 font-semibold block uppercase tracking-wider mb-0.5">
-                      {activeSubject.classes[activeClassIndex].title}
-                    </span>
-                    <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200">
-                      Unidad: {activeSubject.classes[activeClassIndex].subtitle}
-                    </h4>
-                    <div className="mt-1 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                      <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300 font-medium">
-                        Episodio: {activeSubject.classes[activeClassIndex].episode}
+                // Docentes Seriales Main View
+                <div className="p-6 sm:p-8 flex-1 flex flex-col gap-8 bg-white dark:bg-[#0a0d14]">
+                  
+                  {/* Title and Episode Info */}
+                  <div className="flex flex-col md:flex-row gap-6 justify-between items-start">
+                    <div className="flex-1">
+                      <span className="text-xs text-blue-600 dark:text-blue-500 font-bold uppercase tracking-widest mb-2 block">
+                        {activeSubject.classes[activeClassIndex].title}
                       </span>
-                      <span>•</span>
-                      <span>Concepto: {activeSubject.classes[activeClassIndex].concept}</span>
+                      <h4 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-tight mb-3">
+                        {activeSubject.classes[activeClassIndex].subtitle}
+                      </h4>
+                      <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
+                        <span className="bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg font-bold text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                          Netflix / {activeSubject.classes[activeClassIndex].episode}
+                        </span>
+                        <span className="font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 px-3 py-1.5 rounded-lg border border-blue-100 dark:border-blue-900/30">
+                          Teoría: {activeSubject.classes[activeClassIndex].concept}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed bg-slate-50 dark:bg-slate-950 p-3 rounded-lg border border-slate-250/40 dark:border-slate-800">
-                    {activeSubject.classes[activeClassIndex].challengeDescription}
-                  </p>
-
-                  {/* YouTube Video Embed */}
-                  {activeSubject.classes[activeClassIndex].youtubeUrl && (
-                    <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-inner bg-slate-100 dark:bg-slate-950">
-                      <iframe
-                        src={activeSubject.classes[activeClassIndex].youtubeUrl}
-                        title={activeSubject.classes[activeClassIndex].episode}
-                        className="absolute inset-0 w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  )}
-
-                  {/* Relación Trama-Concepto */}
-                  <div className="bg-blue-50/30 dark:bg-slate-900/50 p-4 rounded-xl border border-blue-100/50 dark:border-slate-850 flex flex-col gap-1.5 text-xs text-slate-700 dark:text-slate-300">
-                    <span className="font-bold text-blue-900 dark:text-blue-400 block text-xs">Relación Trama y Conceptos a Explicar:</span>
-                    <p className="leading-relaxed">
-                      {activeSubject.classes[activeClassIndex].relationText}
-                    </p>
-                  </div>
-
-                  {/* Dynamic Simulators */}
-                  <div className="flex-1 flex flex-col justify-center bg-slate-50 dark:bg-slate-950 p-6 rounded-xl border border-dashed border-slate-200 dark:border-slate-850 gap-4">
-                    {activeSubject.classes[activeClassIndex].type === 'cpu' && (
-                      <div className="flex flex-col gap-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Ciclo de Instrucción (CPU)</span>
-                          <div className="flex gap-2">
-                            <button onClick={handleCpuTick} className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold cursor-pointer">
-                              Tick del Reloj
-                            </button>
-                            <button onClick={resetCpu} className="p-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-350 rounded-lg text-xs cursor-pointer">
-                              <RefreshCw size={14} />
-                            </button>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-4 gap-2 text-center text-xs">
-                          <div className={`p-2.5 rounded-lg border transition-all ${cpuStep === 'idle' ? 'bg-blue-900/20 text-blue-400 border-blue-800' : 'bg-slate-800/20 text-slate-500 border-slate-800'}`}>
-                            <span className="block font-semibold">Idle</span>
-                            <span className="text-[10px] opacity-75">Reposo</span>
-                          </div>
-                          <div className={`p-2.5 rounded-lg border transition-all ${cpuStep === 'fetch' ? 'bg-blue-900/20 text-blue-400 border-blue-800' : 'bg-slate-800/20 text-slate-500 border-slate-800'}`}>
-                            <span className="block font-semibold">Fetch</span>
-                            <span className="text-[10px] opacity-75">Lectura</span>
-                          </div>
-                          <div className={`p-2.5 rounded-lg border transition-all ${cpuStep === 'decode' ? 'bg-blue-900/20 text-blue-400 border-blue-800' : 'bg-slate-800/20 text-slate-500 border-slate-800'}`}>
-                            <span className="block font-semibold">Decode</span>
-                            <span className="text-[10px] opacity-75">Decodificar</span>
-                          </div>
-                          <div className={`p-2.5 rounded-lg border transition-all ${cpuStep === 'execute' ? 'bg-blue-900/20 text-blue-400 border-blue-800' : 'bg-slate-800/20 text-slate-500 border-slate-800'}`}>
-                            <span className="block font-semibold">Execute</span>
-                            <span className="text-[10px] opacity-75">Ejecutar</span>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 text-xs">
-                          <div className="flex flex-col gap-1">
-                            <span className="text-slate-400 font-medium">Ciclos de Reloj:</span>
-                            <span className="text-lg font-mono font-bold text-blue-600 dark:text-blue-400">{cpuClock} ticks</span>
-                          </div>
-                          <div className="flex flex-col gap-1">
-                            <span className="text-slate-400 font-medium">Estabilidad Mental del Clon:</span>
-                            <div className="flex items-center gap-2">
-                              <div className="w-full bg-slate-200 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                                <div className={`h-full transition-all duration-300 ${cookieSanity > 50 ? 'bg-emerald-500' : cookieSanity > 20 ? 'bg-amber-500' : 'bg-rose-500'}`} style={{ width: `${cookieSanity}%` }}></div>
-                              </div>
-                              <span className="font-mono font-bold">{cookieSanity}%</span>
+                  {/* Multimedia & Theory Grid */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Fake Player with AI Background */}
+                    <div className="flex flex-col gap-2">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Material Audiovisual</span>
+                      <a 
+                        href={activeSubject.classes[activeClassIndex].youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 group block"
+                      >
+                        <div className="absolute inset-0 bg-slate-800">
+                          <img src={activeSubject.classes[activeClassIndex].imageUrl} alt="Ambientación IA" className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent z-10"></div>
+                          <div className="absolute inset-0 flex items-center justify-center z-20">
+                            <div className="flex flex-col items-center gap-3 transform transition duration-300 group-hover:scale-110 text-white/90 group-hover:text-white">
+                              <PlayCircle size={64} strokeWidth={1.5} className="text-blue-500 drop-shadow-lg group-hover:text-blue-400" />
+                              <span className="text-sm font-bold tracking-wider uppercase bg-black/50 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10">Ver Tráiler en YouTube</span>
                             </div>
                           </div>
                         </div>
+                      </a>
+                    </div>
 
-                        {cookieSanity <= 30 && (
-                          <div className="flex items-center gap-2 p-2 bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-xs rounded-lg border border-amber-250">
-                            <AlertTriangle size={14} className="shrink-0" />
-                            <span>Advertencia: La repetición de ciclos forzada deteriora la estabilidad de la Cookie.</span>
-                          </div>
-                        )}
+                    {/* Relation Text / Theory Explanation */}
+                    <div className="flex flex-col gap-2">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Análisis Didáctico</span>
+                      <div className="bg-slate-50 dark:bg-slate-900/50 p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 h-full">
+                        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                          {activeSubject.classes[activeClassIndex].relationText}
+                        </p>
                       </div>
-                    )}
+                    </div>
+                  </div>
 
-                    {activeSubject.classes[activeClassIndex].type === 'rating' && (
-                      <div className="flex flex-col gap-4">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Calculadora de Reputación Nosedive</span>
-                        <div className="flex flex-col gap-3">
-                          <div className="flex flex-col gap-1">
-                            <div className="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400">
-                              <span>Puntuación Base en Red Social</span>
-                              <span className="text-blue-600 dark:text-blue-400">{socialSlider} Estrellas</span>
+                  {/* Interactive Challenge Section */}
+                  <div className="mt-4 border-t border-slate-200 dark:border-slate-800/80 pt-8">
+                    <div className="mb-6">
+                      <h5 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Simulador de Conceptos</h5>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        {activeSubject.classes[activeClassIndex].challengeDescription}
+                      </p>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-900/80 p-6 sm:p-8 rounded-3xl border shadow-inner border-slate-200 dark:border-slate-800">
+                      
+                      {activeSubject.classes[activeClassIndex].type === 'cpu' && (
+                        <div className="flex flex-col gap-6">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Ciclo Fetch-Decode-Execute</span>
+                            <div className="flex gap-3">
+                              <button onClick={handleCpuTick} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-900/20 transition-all cursor-pointer">
+                                Forzar Tick de Reloj
+                              </button>
+                              <button onClick={resetCpu} className="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl transition-all cursor-pointer" title="Reiniciar Sistema">
+                                <RefreshCw size={20} />
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            {['idle', 'fetch', 'decode', 'execute'].map((stepName) => (
+                              <div key={stepName} className={`p-4 rounded-2xl border-2 transition-all duration-300 text-center ${
+                                cpuStep === stepName 
+                                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border-blue-500 scale-[1.02] shadow-md' 
+                                  : 'bg-slate-50 dark:bg-slate-950 text-slate-400 border-slate-200 dark:border-slate-800 opacity-70'
+                              }`}>
+                                <span className="block font-black text-sm uppercase tracking-widest">{stepName}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                            <div className="bg-slate-100 dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-center items-center">
+                              <span className="text-xs font-bold text-slate-500 uppercase mb-2">Reloj del Sistema (CPU Clock)</span>
+                              <span className="text-4xl font-mono font-black text-slate-800 dark:text-slate-200">{cpuClock}</span>
+                              <span className="text-[10px] text-slate-400 mt-1">Ciclos ejecutados</span>
+                            </div>
+                            <div className="bg-slate-100 dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-center">
+                              <div className="flex justify-between items-end mb-2">
+                                <span className="text-xs font-bold text-slate-500 uppercase">Estabilidad de la Cookie</span>
+                                <span className="text-xl font-mono font-black text-slate-800 dark:text-slate-200">{cookieSanity}%</span>
+                              </div>
+                              <div className="w-full bg-slate-200 dark:bg-slate-800 h-3 rounded-full overflow-hidden shadow-inner">
+                                <div className={`h-full transition-all duration-500 ease-out ${cookieSanity > 50 ? 'bg-emerald-500' : cookieSanity > 20 ? 'bg-amber-500' : 'bg-rose-500'}`} style={{ width: `${cookieSanity}%` }}></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {cookieSanity <= 30 && (
+                            <div className="flex items-center gap-3 p-4 bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-sm rounded-2xl border border-amber-200 dark:border-amber-900/50 animate-pulse">
+                              <AlertTriangle size={20} className="shrink-0" />
+                              <span className="font-semibold">Advertencia de Kernel: La aceleración de ciclos forzada deteriora rápidamente la estabilidad del software encapsulado.</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {activeSubject.classes[activeClassIndex].type === 'rating' && (
+                        <div className="flex flex-col gap-6">
+                          <div className="flex flex-col gap-4">
+                            <div className="flex justify-between items-center text-sm">
+                              <span className="font-bold text-slate-700 dark:text-slate-300">Puntuación Base (Variable Continua)</span>
+                              <span className="font-black text-lg text-blue-600 dark:text-blue-400">{socialSlider.toFixed(1)} ★</span>
                             </div>
                             <input 
                               type="range" 
@@ -469,162 +559,175 @@ function App() {
                               step="0.1" 
                               value={socialSlider} 
                               onChange={(e) => setSocialSlider(parseFloat(e.target.value))}
-                              className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                              className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
                             />
                           </div>
 
-                          <div className="flex flex-col gap-2 text-xs mt-2">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                              <input type="checkbox" checked={sincereInteraction} onChange={(e) => setSincereInteraction(e.target.checked)} className="rounded text-blue-600 accent-blue-600 cursor-pointer" />
-                              <span>Interacción Sincera (-1.2 estrellas si es Falsa)</span>
+                          <div className="flex flex-col gap-3 p-5 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800">
+                            <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Condicionantes Lógicos (Booleanos)</span>
+                            <label className="flex items-center gap-3 cursor-pointer group">
+                              <input type="checkbox" checked={sincereInteraction} onChange={(e) => setSincereInteraction(e.target.checked)} className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+                              <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Interacción evaluada como Sincera (True) <span className="text-xs text-slate-400 ml-1">[-1.2 si es False]</span></span>
                             </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                              <input type="checkbox" checked={breaksRules} onChange={(e) => setBreaksRules(e.target.checked)} className="rounded text-blue-600 accent-blue-600 cursor-pointer" />
-                              <span>Romper Normas / Berrinche Público (-2.0 estrellas)</span>
+                            <label className="flex items-center gap-3 cursor-pointer group">
+                              <input type="checkbox" checked={breaksRules} onChange={(e) => setBreaksRules(e.target.checked)} className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+                              <span className="text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors">Infringe Normas de Comunidad (True) <span className="text-xs text-rose-500 ml-1">[-2.0 de penalidad]</span></span>
                             </label>
                           </div>
 
-                          <div className="mt-4 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-center">
-                            <span className="text-xs text-slate-400 block mb-1">Clasificación Ponderada Final</span>
-                            <div className="text-3xl font-extrabold font-mono text-blue-700 dark:text-blue-400">
-                              ★ {calculateFinalRating()}
+                          <div className="mt-2 flex flex-col sm:flex-row items-center gap-6 p-6 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 border border-slate-300 dark:border-slate-700 rounded-3xl shadow-sm">
+                            <div className="text-center sm:text-left flex-1">
+                              <span className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-2">Resultado Algorítmico</span>
+                              <div className="text-5xl font-black font-mono text-slate-900 dark:text-white">
+                                {calculateFinalRating()}
+                              </div>
                             </div>
-                            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-2">
-                              {calculateFinalRating() >= 4.0 ? 'Acceso Premium habilitado en el Seminario.' : calculateFinalRating() >= 2.0 ? 'Acceso Básico habilitado.' : 'Bloqueado. Excluido del ecosistema del seminario.'}
+                            <div className="flex-1">
+                              <div className={`p-4 rounded-2xl border ${
+                                calculateFinalRating() >= 4.0 
+                                  ? 'bg-emerald-100 border-emerald-300 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-400' 
+                                  : calculateFinalRating() >= 2.0 
+                                  ? 'bg-amber-100 border-amber-300 text-amber-800 dark:bg-amber-900/30 dark:border-amber-800 dark:text-amber-400'
+                                  : 'bg-rose-100 border-rose-300 text-rose-800 dark:bg-rose-900/30 dark:border-rose-800 dark:text-rose-400'
+                              }`}>
+                                <span className="font-bold text-sm block mb-1">Estatus en el Sistema:</span>
+                                <p className="text-sm leading-snug">
+                                  {calculateFinalRating() >= 4.0 ? 'Acceso Premium habilitado. Beneficios sociales activos.' : calculateFinalRating() >= 2.0 ? 'Acceso Estándar. Funciones limitadas.' : 'Bloqueado. Excluido del ecosistema social (Zero Tolerance).'}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {activeSubject.classes[activeClassIndex].type === 'security' && (
+                        <div className="flex flex-col gap-6">
+                          <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Activa o desactiva los pilares de la seguridad de la información para simular vulnerabilidades.</p>
+                          
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <label className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all ${!confidentialityOff ? 'bg-emerald-50 dark:bg-emerald-900/10 border-emerald-500/50 hover:bg-emerald-100' : 'bg-rose-50 dark:bg-rose-900/10 border-rose-500 hover:bg-rose-100'}`}>
+                              <input type="checkbox" checked={confidentialityOff} onChange={(e) => setConfidentialityOff(e.target.checked)} className="sr-only" />
+                              <span className={`block font-black text-lg mb-1 ${!confidentialityOff ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-700 dark:text-rose-400'}`}>Confidencialidad</span>
+                              <span className="text-xs font-semibold text-slate-500">{!confidentialityOff ? 'Datos Encriptados' : 'Filtración de Datos (Exfiltración)'}</span>
+                            </label>
+                            <label className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all ${!integrityOff ? 'bg-emerald-50 dark:bg-emerald-900/10 border-emerald-500/50 hover:bg-emerald-100' : 'bg-amber-50 dark:bg-amber-900/10 border-amber-500 hover:bg-amber-100'}`}>
+                              <input type="checkbox" checked={integrityOff} onChange={(e) => setIntegrityOff(e.target.checked)} className="sr-only" />
+                              <span className={`block font-black text-lg mb-1 ${!integrityOff ? 'text-emerald-700 dark:text-emerald-400' : 'text-amber-700 dark:text-amber-400'}`}>Integridad</span>
+                              <span className="text-xs font-semibold text-slate-500">{!integrityOff ? 'Información Exacta' : 'Datos Manipulados (Man-in-the-Middle)'}</span>
+                            </label>
+                            <label className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all ${!availabilityOff ? 'bg-emerald-50 dark:bg-emerald-900/10 border-emerald-500/50 hover:bg-emerald-100' : 'bg-rose-50 dark:bg-rose-900/10 border-rose-500 hover:bg-rose-100'}`}>
+                              <input type="checkbox" checked={availabilityOff} onChange={(e) => setAvailabilityOff(e.target.checked)} className="sr-only" />
+                              <span className={`block font-black text-lg mb-1 ${!availabilityOff ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-700 dark:text-rose-400'}`}>Disponibilidad</span>
+                              <span className="text-xs font-semibold text-slate-500">{!availabilityOff ? 'Servicios Online' : 'Caída del Sistema (DDoS)'}</span>
+                            </label>
+                          </div>
+
+                          <div className={`mt-2 p-6 rounded-3xl border-2 shadow-sm transition-colors ${
+                            confidentialityOff || integrityOff || availabilityOff 
+                              ? 'bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900/50' 
+                              : 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900/50'
+                          }`}>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                              <span className="font-bold text-slate-700 dark:text-slate-300">Diagnóstico del Entorno:</span>
+                              <span className={`inline-block px-4 py-1.5 rounded-full font-black text-sm uppercase tracking-wider ${
+                                confidentialityOff && integrityOff && availabilityOff 
+                                  ? 'bg-rose-600 text-white' 
+                                  : (confidentialityOff || integrityOff || availabilityOff) 
+                                  ? 'bg-amber-500 text-white' 
+                                  : 'bg-emerald-500 text-white'
+                              }`}>
+                                {confidentialityOff && integrityOff && availabilityOff ? 'Brecha Crítica (100%)' : (confidentialityOff || integrityOff || availabilityOff) ? 'Sistema Vulnerado' : 'Entorno Seguro'}
+                              </span>
+                            </div>
+                            <p className="text-sm font-medium text-slate-600 dark:text-slate-400 leading-relaxed bg-white/50 dark:bg-slate-900/50 p-4 rounded-xl">
+                              {confidentialityOff ? '⚠️ Fallo tipo "Shut Up and Dance": Malware ha obtenido acceso a archivos confidenciales del usuario sin autorización.' : integrityOff ? '⚠️ Advertencia: Paquetes de red están siendo interceptados y alterados antes de llegar a su destino.' : availabilityOff ? '⚠️ Error 503: Los recursos del sistema no están accesibles para usuarios autorizados.' : '✓ Políticas de seguridad operativas. La arquitectura del sistema mantiene la protección de los datos.'}
                             </p>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {activeSubject.classes[activeClassIndex].type === 'security' && (
-                      <div className="flex flex-col gap-4">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Auditoría del Entorno: Tríada CIA</span>
-                        <div className="grid grid-cols-3 gap-2 text-xs">
-                          <label className={`p-3 rounded-xl border flex flex-col gap-1 cursor-pointer transition-all ${!confidentialityOff ? 'bg-emerald-950/20 text-emerald-400 border-emerald-900' : 'bg-rose-950/20 text-rose-400 border-rose-900'}`}>
-                            <input type="checkbox" checked={confidentialityOff} onChange={(e) => setConfidentialityOff(e.target.checked)} className="sr-only" />
-                            <span className="font-bold">Confidencialidad</span>
-                            <span className="text-[10px] opacity-75">{!confidentialityOff ? 'Protegida' : 'Vulnerada'}</span>
-                          </label>
-                          <label className={`p-3 rounded-xl border flex flex-col gap-1 cursor-pointer transition-all ${!integrityOff ? 'bg-emerald-950/20 text-emerald-400 border-emerald-900' : 'bg-rose-950/20 text-rose-400 border-rose-900'}`}>
-                            <input type="checkbox" checked={integrityOff} onChange={(e) => setIntegrityOff(e.target.checked)} className="sr-only" />
-                            <span className="font-bold">Integridad</span>
-                            <span className="text-[10px] opacity-75">{!integrityOff ? 'Protegida' : 'Alterada'}</span>
-                          </label>
-                          <label className={`p-3 rounded-xl border flex flex-col gap-1 cursor-pointer transition-all ${!availabilityOff ? 'bg-emerald-950/20 text-emerald-400 border-emerald-900' : 'bg-rose-950/20 text-rose-400 border-rose-900'}`}>
-                            <input type="checkbox" checked={availabilityOff} onChange={(e) => setAvailabilityOff(e.target.checked)} className="sr-only" />
-                            <span className="font-bold">Disponibilidad</span>
-                            <span className="text-[10px] opacity-75">{!availabilityOff ? 'Estable' : 'Caída'}</span>
-                          </label>
-                        </div>
-
-                        <div className="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs flex flex-col gap-2">
-                          <div className="flex justify-between items-center">
-                            <span>Nivel de Riesgo del Sistema:</span>
-                            <span className={`font-bold uppercase ${confidentialityOff || integrityOff || availabilityOff ? 'text-rose-500' : 'text-emerald-500'}`}>
-                              {confidentialityOff && integrityOff && availabilityOff ? 'Crítico (100%)' : (confidentialityOff || integrityOff || availabilityOff) ? 'Medio' : 'Seguro (0%)'}
-                            </span>
+                      {activeSubject.classes[activeClassIndex].type === 'tos' && (
+                        <div className="flex flex-col gap-6">
+                          <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-3xl border border-slate-200 dark:border-slate-800">
+                            <h6 className="font-black text-slate-800 dark:text-slate-200 mb-4 text-lg">Contrato de Licencia de Usuario Final (EULA)</h6>
+                            <div className="flex flex-col gap-4">
+                              <label className="flex items-start gap-3 cursor-pointer group">
+                                <input type="checkbox" checked={tosAcceptAll} onChange={(e) => { setTosAcceptAll(e.target.checked); if(e.target.checked){setTosImageRights(true); setTosGenerativeAi(true)} }} className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+                                <div>
+                                  <span className="font-bold text-slate-800 dark:text-slate-200 text-base block group-hover:text-blue-600 transition-colors">He leído y acepto los Términos de Servicio Completos</span>
+                                  <span className="text-xs text-slate-500">Obligatorio para acceder a la plataforma.</span>
+                                </div>
+                              </label>
+                              <div className="pl-8 flex flex-col gap-3 mt-2 border-l-2 border-slate-200 dark:border-slate-700">
+                                <label className="flex items-center gap-3 cursor-pointer group">
+                                  <input type="checkbox" checked={tosImageRights} onChange={(e) => setTosImageRights(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+                                  <span className="text-sm font-medium text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Ceder derechos perpetuos de imagen e identidad en vivo.</span>
+                                </label>
+                                <label className="flex items-center gap-3 cursor-pointer group">
+                                  <input type="checkbox" checked={tosGenerativeAi} onChange={(e) => setTosGenerativeAi(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+                                  <span className="text-sm font-medium text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Autorizar la clonación mediante algoritmos de IA Generativa Cuántica.</span>
+                                </label>
+                              </div>
+                            </div>
                           </div>
-                          <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-relaxed italic">
-                            {confidentialityOff ? 'Error "Shut Up and Dance": Archivos privados exfiltrados.' : integrityOff ? 'Fuga de Integridad: Mensajes alterados en tránsito.' : availabilityOff ? 'Servidor inactivo: Estudiantes incomunicados.' : 'Ecosistema de datos completamente protegido.'}
-                          </p>
-                        </div>
-                      </div>
-                    )}
 
-                    {activeSubject.classes[activeClassIndex].type === 'tos' && (
-                      <div className="flex flex-col gap-4 text-xs">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Configurar Licencia de Usuario</span>
-                        <div className="flex flex-col gap-2">
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" checked={tosAcceptAll} onChange={(e) => { setTosAcceptAll(e.target.checked); if(e.target.checked){setTosImageRights(true); setTosGenerativeAi(true)} }} className="rounded text-blue-600 accent-blue-600 cursor-pointer" />
-                            <span className="font-semibold">Aceptar Términos de Servicio Completo (ToS)</span>
-                          </label>
-                          <div className="pl-6 flex flex-col gap-2 opacity-80">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                              <input type="checkbox" checked={tosImageRights} onChange={(e) => setTosImageRights(e.target.checked)} className="rounded text-blue-600 accent-blue-600 cursor-pointer" />
-                              <span>Ceder derechos de imagen e identidad en vivo</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                              <input type="checkbox" checked={tosGenerativeAi} onChange={(e) => setTosGenerativeAi(e.target.checked)} className="rounded text-blue-600 accent-blue-600 cursor-pointer" />
-                              <span>Permitir clonación con IA Generativa para shows</span>
-                            </label>
+                          <div className={`p-6 rounded-3xl border-2 transition-all ${
+                            tosImageRights && tosGenerativeAi 
+                              ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-900/80 shadow-lg shadow-rose-900/10' 
+                              : 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-900/80'
+                          }`}>
+                            <div className="flex gap-4 items-start">
+                              <div className={`p-3 rounded-full ${tosImageRights && tosGenerativeAi ? 'bg-rose-200 text-rose-700 dark:bg-rose-900/50 dark:text-rose-400' : 'bg-emerald-200 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400'}`}>
+                                <AlertTriangle size={24} />
+                              </div>
+                              <div>
+                                <span className={`font-black block text-lg mb-1 ${tosImageRights && tosGenerativeAi ? 'text-rose-800 dark:text-rose-300' : 'text-emerald-800 dark:text-emerald-300'}`}>
+                                  Estado de Soberanía Digital
+                                </span>
+                                <p className={`text-sm font-medium leading-relaxed ${tosImageRights && tosGenerativeAi ? 'text-rose-700 dark:text-rose-400' : 'text-emerald-700 dark:text-emerald-400'}`}>
+                                  {tosImageRights && tosGenerativeAi 
+                                    ? 'ALERTA TIPO "JOAN IS AWFUL": Has cedido el control legal y técnico de tu persona digital. El ecosistema automatizado de la corporación ahora genera contenido con tu avatar sin tu consentimiento expreso.' 
+                                    : 'Soberanía Activa. Tus datos biométricos y propiedad intelectual están protegidos bajo tu control frente a la automatización de terceros.'}
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
-
-                        <div className={`p-4 rounded-xl border flex gap-3 items-start ${tosImageRights && tosGenerativeAi ? 'bg-rose-950/20 border-rose-900 text-rose-300' : 'bg-emerald-950/20 border-emerald-900 text-emerald-300'}`}>
-                          <AlertTriangle size={18} className="shrink-0 mt-0.5" />
-                          <div>
-                            <span className="font-bold block text-xs">Estado de Soberanía del Programador</span>
-                            <p className="text-[10px] mt-0.5 leading-relaxed">
-                              {tosImageRights && tosGenerativeAi 
-                                ? 'ALERTA "Joan is Awful": Has cedido el control total de tu persona digital. El sistema generará clases automatizadas con tu avatar sin tu consentimiento.' 
-                                : 'Tu identidad y propiedad intelectual están seguras bajo tu control (Soberanía de datos activa).'}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
 
-                  <div className="flex justify-end pt-2 border-t border-slate-100 dark:border-slate-800/80">
-                    <span className="text-[10px] text-slate-400 dark:text-slate-500">
-                      Desarrollado para la Cátedra de Modelos de Comunicación.
-                    </span>
-                  </div>
                 </div>
               ) : (
                 // Default placeholders view for other tabs
-                <div className="p-6 flex-1 flex flex-col gap-6">
-                  <div>
-                    <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200">
+                <div className="p-8 flex-1 flex flex-col gap-8 items-center justify-center bg-slate-50 dark:bg-[#0a0d14] text-center">
+                  <div className="max-w-md">
+                    <div className="w-20 h-20 bg-slate-200 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
+                      <GraduationCap size={40} />
+                    </div>
+                    <h4 className="text-2xl font-black text-slate-800 dark:text-slate-200 mb-3">
                       {activeSubject.demoTitle}
                     </h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
                       {activeSubject.demoDescription}
                     </p>
-                  </div>
-
-                  {/* Form fields simulator */}
-                  <div className="flex-1 flex flex-col justify-center bg-slate-50 dark:bg-slate-950 p-6 rounded-xl border border-dashed border-slate-200 dark:border-slate-850 gap-4">
-                    <h5 className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Simulación de Variables de Entrada
-                    </h5>
                     
-                    <div className="flex flex-col gap-3">
-                      {activeSubject.placeholderProject.inputs.map((inp, idx) => (
-                        <div key={idx} className="flex flex-col gap-1">
-                          <label className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-                            {inp}
-                          </label>
-                          <input 
-                            type="text" 
-                            placeholder="Ingrese valor simulado..." 
-                            disabled 
-                            className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-400 cursor-not-allowed w-full"
-                          />
-                        </div>
-                      ))}
+                    <div className="p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-4">Inputs Simulados (En Desarrollo)</span>
+                      <div className="flex flex-col gap-3 mb-6">
+                        {activeSubject.placeholderProject.inputs.map((inp, idx) => (
+                          <div key={idx} className="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-100 dark:border-slate-800/60">
+                            <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 block">{inp}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="p-4 bg-blue-50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
+                        <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase block mb-1">Salida Esperada</span>
+                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                          {activeSubject.placeholderProject.mockResult}
+                        </p>
+                      </div>
                     </div>
-
-                    <div className="mt-2 p-3 bg-blue-50/50 dark:bg-slate-900/40 rounded-lg border border-blue-100/50 dark:border-slate-800/80">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 block mb-1">
-                        Comportamiento Esperado
-                      </span>
-                      <p className="text-xs text-slate-650 dark:text-slate-400 leading-normal italic text-slate-600 dark:text-slate-400">
-                        &ldquo;{activeSubject.placeholderProject.mockResult}&rdquo;
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-end pt-2 border-t border-slate-100 dark:border-slate-800/80">
-                    <button 
-                      disabled 
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500 cursor-not-allowed border border-slate-200 dark:border-slate-700"
-                    >
-                      <span>Ejecutar Simulación</span>
-                      <ExternalLink size={12} />
-                    </button>
                   </div>
                 </div>
               )}
@@ -635,15 +738,17 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-16">
-        <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-700 dark:text-slate-300">UTN - ISPT</span>
-            <span>·</span>
+      <footer className="border-t border-slate-200 dark:border-slate-800/60 bg-white/80 dark:bg-[#0a0d14]/80 mt-12 py-8 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-sm font-medium text-slate-500 dark:text-slate-400">
+            <span className="text-slate-800 dark:text-slate-200 font-bold">UTN - ISPT</span>
+            <span className="hidden md:inline">•</span>
             <span>Profesorado en Docencia Superior</span>
+            <span className="hidden md:inline">•</span>
+            <span>Trabajo Final Integrador</span>
           </div>
-          <div>
-            <span>Diseñado con React, Vite y Tailwind CSS</span>
+          <div className="text-xs text-slate-400 font-semibold bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full">
+            Construido con React, Vite y Tailwind CSS v4
           </div>
         </div>
       </footer>
