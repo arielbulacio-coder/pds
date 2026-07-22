@@ -171,11 +171,11 @@ function App() {
       videos: [
         {
           title: 'Escuela Orientada N.º 333 (Hernandarias, Santa Fe)',
-          url: 'https://www.youtube.com/embed?listType=search&list=Escuelas+Argentinas+Hernandarias'
+          url: 'https://www.youtube.com/embed/aAZ6BGAIu2g'
         },
         {
           title: 'Escuela de Educación Artística N.º 1 (Santiago del Estero)',
-          url: 'https://www.youtube.com/embed?listType=search&list=Escuelas+Argentinas+Gennero'
+          url: 'https://www.youtube.com/embed/DE-MIxco8W8'
         }
       ],
       analysis: [
