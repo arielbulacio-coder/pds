@@ -1,0 +1,55 @@
+PROPUSTA METODOLÓGICA Y DISEÑO DIDÁCTICO: "DOCENTES SERIALES"
+Asignatura de Referencia: Fundamentos de la Computación (ISPT - UTN)
+Diseño en el marco de: Modelos y Técnicas de la Comunicación (Profesora Mónica Bardi)
+Autor: Alumno de Profesorado en Docencia Superior
+
+================================================================================
+PASO 1: DELIMITACIÓN Y ENCUADRE NARRATIVO
+================================================================================
+
+1. Problemática a resolver en la Educación Superior:
+La enseñanza de asignaturas troncales y técnicas como "Fundamentos de la Computación" en carreras de tecnología (como la Tecnicatura en Desarrollo de Software) suele sufrir de un enfoque excesivamente técnico-instrumental y de una "secuencia progresiva lineal" tradicional (Litwin, 2000). Los conceptos de hardware, representación de datos y arquitectura de sistemas se enseñan aislados de su impacto ético y social. Se requiere un hackeo curricular que inserte la dimensión crítica, comunicacional y humana en la computación técnica.
+
+2. Ficha Técnica y Punteo del Seminario:
+Nombre del Seminario: "Docentes Seriales: Fundamentos de la Computación desde la Lente de Black Mirror"
+Duración: 4 clases de taller presencial/híbrido.
+
+Punteo de Contenidos:
+- Clase 1: La Arquitectura del Control y la Consciencia Artificial
+  * Contenido técnico: Modelo de Von Neumann, CPU, ciclos de instrucción (Fetch-Decode-Execute) y modos de operación (Usuario vs. Kernel).
+  * Narrativa: Análisis del dispositivo "Cookie" (clones de consciencia digital) en el episodio "White Christmas" (S02E04) como metáfora del control de subprocesos y privilegios del sistema operativo.
+- Clase 2: Datos, Algoritmos de Calificación y la Burbuja Social
+  * Contenido técnico: Representación digital de la información, lógica booleana, sesgos en algoritmos y burbujas de filtro.
+  * Narrativa: Análisis del episodio "Nosedive" (S03E01) y la cuantificación de las relaciones humanas mediante sistemas binarios y ponderaciones algorítmicas de reputación.
+- Clase 3: Vulnerabilidades del Alma Digital (Ciberseguridad y Tríada CIA)
+  * Contenido técnico: Ciberseguridad, privacidad, amenazas y vulnerabilidades comunes, y la Tríada CIA (Confidencialidad, Integridad y Disponibilidad).
+  * Narrativa: Análisis del episodio "Shut Up and Dance" (S03E03), evaluando las consecuencias sistémicas de la pérdida de Confidencialidad a través de troyanos y el chantaje digital.
+- Clase 4: Ética, IA Generativa y Soberanía Tecnológica en la Era Posdigital
+  * Contenido técnico: Sistemas operativos, automatización, IA, contratos digitales y privacidad de datos.
+  * Narrativa: Análisis del episodio "Joan Is Awful" (S06E01) enfocado en los derechos de propiedad intelectual, términos de servicio abusivos generados por sistemas automatizados y la pérdida del control del usuario (Kernel) ante el sistema corporativo.
+
+3. Elección de la Serie: Black Mirror (Netflix)
+- Tres Características Estéticas / Narrativas:
+  a) Extrapolación de Distopías Cercanas: Toma tecnologías actuales (redes sociales, IoT, IA, cookies) y las proyecta en un futuro inmediato donde la ética del programador se desdibuja, sirviendo como el "caso de estudio" perfecto para la reflexión crítica (Bitonte & Landeau, 2025).
+  b) Estructura Antológica Autónoma: Cada capítulo funciona como una obra independiente con su propio ecosistema de reglas, lo que permite recortar temáticas y aplicarlas directamente a unidades específicas de la materia de forma no secuencial.
+  c) Focalización Dramática de la Tecnología: La serie no se centra en explicar el hardware, sino en cómo el diseño y el código de dicho hardware modifican la comunicación, la subjetividad y el comportamiento de los sujetos en el entorno posdigital (Maggio, 2022).
+
+================================================================================
+PASO 2: PROPUESTA DE DISEÑO DIDÁCTICO
+================================================================================
+
+a. Resumen de la propuesta de diseño:
+El seminario se estructura como una "didáctica en vivo" (Maggio), implementando recorridos no lineales mediante el análisis y hackeo pedagógico de episodios de Black Mirror. 
+En lugar de iniciar con la teoría formal del hardware, cada clase comienza con un "flashforward" (proyección de un dilema del capítulo) que fuerza a los estudiantes a investigar los fundamentos técnicos que lo hacen posible para luego plantear "soluciones de ingeniería o código" al problema planteado. La evaluación deja de ser sumativa tradicional y se convierte en la producción colaborativa en la nube de un "Manifiesto Ético de Diseño de Software" y la simulación interactiva de sistemas.
+
+b. Boceto del Diseño didáctico (Representación Funcional):
+[CLASE 1: WHITE CHRISTMAS] ──> Análisis del Kernel y la Consciencia Virtual
+         │
+[CLASE 2: NOSEDIVE]        ──> Simulación de Ponderación Algorítmica y Sesgo Booleano
+         │
+[CLASE 3: SHUT UP & DANCE] ──> Auditoría de Seguridad basada en la Tríada CIA
+         │
+[CLASE 4: JOAN IS AWFUL]   ──> Mesa Redonda sobre Ética, IA y Licencias de Software
+
+c. Reflexiones finales: ¿Qué aportó a su formación la realización de esta propuesta?
+El desarrollo de esta propuesta didáctica permitió romper la dicotomía entre lo puramente técnico y lo puramente humanístico. Entender que la configuración de la CPU o la estructura de un algoritmo no son decisiones neutrales, sino actos de comunicación política e institucional, redefine el rol del docente en carreras tecnológicas. Las series de ficción actúan aquí no como meros entretenimientos, sino como simuladores conceptuales complejos que permiten "ensayar" la futura performance del egresado técnico frente a los dilemas del mundo real.
