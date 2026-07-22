@@ -351,14 +351,14 @@ function App() {
           <div className="relative z-10 p-8 sm:p-12 lg:p-16 flex flex-col items-start max-w-4xl">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-6 backdrop-blur-sm">
               <BookOpen size={14} />
-              Portfolio de Trabajos Finales
+              Profesorado en Docencia Superior
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6">
-              Plataforma de <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-200">Demostración en Vivo</span>
+              Portfolio de <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-200">Trabajos Finales</span>
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 leading-relaxed font-light max-w-2xl">
-              Un espacio inmersivo diseñado para exponer el funcionamiento real y pedagógico de los proyectos finales desarrollados durante el Profesorado.
+              Un espacio diseñado para exponer y analizar los proyectos educativos desarrollados durante el Profesorado.
             </p>
           </div>
         </section>
