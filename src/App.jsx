@@ -103,7 +103,7 @@ function App() {
           episode: 'White Christmas (S02E04)',
           concept: 'Ciclo de instrucción y privilegios de Kernel vs. Usuario.',
           challengeDescription: 'Simulación de la manipulación de una "Cookie" (consciencia digital clonada) para entender los ciclos de reloj de una CPU y las jerarquías de privilegios.',
-          youtubeUrl: 'https://www.youtube.com/watch?v=O-LGG30Hl2U',
+          youtubeUrl: 'https://www.youtube.com/embed/DBu6D14F6JA',
           imageUrl: 'assets/class1.png',
           relationText: 'En "White Christmas", la consciencia clonada (Cookie) corre como un proceso virtual aislado dentro de una carcasa de hardware. El programador manipula el tiempo del sistema acelerándolo artificialmente, lo que representa alegóricamente el Reloj del Sistema (System Clock) de una CPU. Según la Unidad 1 del programa de Fundamentos de Computación, la CPU ejecuta el ciclo Fetch-Decode-Execute. La Cookie carece de privilegios sobre el entorno (modo Kernel), limitándose a ejecutar tareas de usuario sin soberanía. Esto ilustra el control arquitectónico del Hardware sobre el Software.',
           type: 'cpu'
@@ -114,7 +114,7 @@ function App() {
           episode: 'Nosedive (S03E01)',
           concept: 'Representación digital, lógica booleana y sesgos.',
           challengeDescription: 'Calculadora de reputación social que demuestra cómo la lógica booleana condicional rige nuestras interacciones en plataformas digitales.',
-          youtubeUrl: 'https://www.youtube.com/watch?v=R94yH3pL1zE',
+          youtubeUrl: 'https://www.youtube.com/embed/lTpNgpX9f2g',
           imageUrl: 'assets/class2.png',
           relationText: 'El episodio "Nosedive" presenta una sociedad cuantificada donde el valor humano se reduce a un número decimal de coma flotante. Este sistema procesa la lógica booleana condicional para asignar privilegios (SI calificación < X ENTONCES denegar acceso). Abordando la Unidad 3 (Representación de Datos y Lógica Digital), la serie nos permite evaluar críticamente cómo la codificación booleana y los algoritmos influyen en la creación de "burbujas de filtro". Demuestra que el diseño de un algoritmo matemático no es neutral, sino que produce estratificación y exclusión social.',
           type: 'rating'
@@ -125,7 +125,7 @@ function App() {
           episode: 'Shut Up and Dance (S03E03)',
           concept: 'Vulnerabilidades, malware y la Tríada de Seguridad.',
           challengeDescription: 'Audita un sistema simulado encendiendo o apagando los principios de la Tríada CIA para observar el impacto crítico de las vulnerabilidades.',
-          youtubeUrl: 'https://www.youtube.com/watch?v=jDiZYao1iug',
+          youtubeUrl: 'https://www.youtube.com/embed/aVx7o2xD3ok',
           imageUrl: 'assets/class3.png',
           relationText: 'En "Shut Up and Dance", evidenciamos el colapso absoluto de la Confidencialidad de la Tríada CIA (Confidencialidad, Integridad, Disponibilidad), concepto central de la Unidad 4. Un malware exfiltra los archivos privados del protagonista a un servidor externo. Esta vulnerabilidad de seguridad permite que atacantes lo extorsionen mediante ingeniería social. El episodio funciona como caso de estudio fundamental para debatir la responsabilidad ética del profesional en sistemas y la importancia crítica de la protección de datos en entornos interconectados.',
           type: 'security'
@@ -136,7 +136,7 @@ function App() {
           episode: 'Joan Is Awful (S06E01)',
           concept: 'El rol del software, IA generativa y soberanía del usuario.',
           challengeDescription: 'Modifica los permisos contractuales (ToS) y comprueba el nivel de riesgo de expropiación de identidad frente a la computación cuántica y la IA.',
-          youtubeUrl: 'https://www.youtube.com/watch?v=5jY1ecibLYo',
+          youtubeUrl: 'https://www.youtube.com/embed/zGPE5K7NgsU',
           imageUrl: 'assets/class4.png',
           relationText: 'La protagonista de "Joan Is Awful" cede su identidad digital al aceptar los Términos de Servicio (ToS) abusivos de una plataforma de streaming. Una supercomputadora procesa su vida en tiempo real usando Inteligencia Artificial generativa. Esto conecta con la Unidad 2 (El rol del Software y Cultura Digital). La serie ilustra magistralmente cómo el ecosistema de software propietario puede despojar al usuario de su soberanía tecnológica, planteando un debate ético urgente sobre la automatización y los límites legales de la tecnología moderna.',
           type: 'tos'
@@ -449,35 +449,34 @@ function App() {
 
                   {/* Multimedia & Theory Grid */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Fake Player with AI Background */}
+                    {/* Embedded Trailer Video */}
                     <div className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Material Audiovisual</span>
-                      <a 
-                        href={activeSubject.classes[activeClassIndex].youtubeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 group block"
-                      >
-                        <div className="absolute inset-0 bg-slate-800">
-                          <img src={activeSubject.classes[activeClassIndex].imageUrl} alt="Ambientación IA" className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent z-10"></div>
-                          <div className="absolute inset-0 flex items-center justify-center z-20">
-                            <div className="flex flex-col items-center gap-3 transform transition duration-300 group-hover:scale-110 text-white/90 group-hover:text-white">
-                              <PlayCircle size={64} strokeWidth={1.5} className="text-blue-500 drop-shadow-lg group-hover:text-blue-400" />
-                              <span className="text-sm font-bold tracking-wider uppercase bg-black/50 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10">Ver Tráiler en YouTube</span>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
+                      <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-lg">
+                        <iframe
+                          src={activeSubject.classes[activeClassIndex].youtubeUrl}
+                          title={activeSubject.classes[activeClassIndex].episode}
+                          className="absolute inset-0 w-full h-full border-0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
                     </div>
 
                     {/* Relation Text / Theory Explanation */}
                     <div className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Análisis Didáctico</span>
-                      <div className="bg-slate-50 dark:bg-slate-900/50 p-5 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 h-full">
-                        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                          {activeSubject.classes[activeClassIndex].relationText}
-                        </p>
+                      <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 h-full overflow-hidden flex flex-col">
+                        <img 
+                          src={activeSubject.classes[activeClassIndex].imageUrl} 
+                          alt="Ilustración IA del Seminario" 
+                          className="w-full h-40 sm:h-48 object-cover border-b border-slate-200 dark:border-slate-800"
+                        />
+                        <div className="p-5 sm:p-6 flex-1">
+                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                            {activeSubject.classes[activeClassIndex].relationText}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
