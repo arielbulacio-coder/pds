@@ -165,13 +165,91 @@ function App() {
       role: 'Docente',
       icon: Award,
       description: 'Análisis de los marcos normativos, las agendas estatales y los programas socioeducativos orientados a garantizar la inclusión y el derecho a la educación.',
-      demoTitle: 'Cartografía de Programas Socioeducativos',
-      demoDescription: 'Plataforma interactiva de visualización y mapeo de iniciativas educativas públicas, identificando la cobertura territorial e impacto.',
-      placeholderProject: {
-        status: 'Disponible próximamente',
-        inputs: ['Jurisdicción', 'Nivel Educativo', 'Eje de Acción'],
-        mockResult: 'Se mapeará el alcance socioeducativo y se emitirá un reporte comparativo de normativas aplicables vigentes.'
-      }
+      demoTitle: 'Línea de Tiempo Histórica',
+      demoDescription: 'Plataforma interactiva para explorar la evolución del Estado Argentino y sus modelos de política educativa.',
+      timeline: [
+        {
+          period: '1853 - 1930',
+          title: 'Estado Oligárquico-Liberal',
+          type: 'Estado Liberal Oligárquico',
+          features: 'Modelo agroexportador, patrimonialismo, democracia restringida (partidos de notables), individualismo, laicidad.',
+          agenda: 'El objetivo central era la construcción de la idea de Nación, la homogeneización cultural frente a la inmigración masiva y la formación del ciudadano. Proceso de escolarización con fuertes pretensiones de masividad bajo un sistema de instrucción pública muy centralizado.',
+          laws: [
+            'Constitución Nacional (1853): Bases del sistema político-educativo.',
+            'Ley 1420 de Educación Común (1884): Establece la educación primaria obligatoria, gratuita, gradual y laica.',
+            'Ley Avellaneda (1885): Normativa para la organización de las universidades nacionales.',
+            'Ley Láinez (1905): Permitió a la Nación crear y sostener escuelas primarias en las provincias para combatir el analfabetismo.'
+          ],
+          imageUrl: 'assets/pol_1.png'
+        },
+        {
+          period: '1930 - 1976',
+          title: 'Estado Benefactor / Social',
+          type: 'Nacional-Popular y Desarrollismo',
+          features: 'Industrialismo por sustitución de importaciones (Estado interventor), garante de derechos sociales, interpenetración entre Estado y sociedad civil, organización sindical, igualitarismo.',
+          agenda: 'El eje gira hacia la formación para el trabajo y la industria (teoría del capital humano/recursos humanos). Expansión y masificación del nivel medio y técnico. Creciente demanda de democratización del sistema educativo.',
+          laws: [
+            'Reforma Constitucional (1949): Refleja la relación pedagógica entre educación y trabajo.',
+            'Ley 14.538 (1944): Creación de la CNAOP para vincular educación y fábricas.',
+            'Ley 15.240 (1959): Creación del CONET.',
+            'Creación de la Universidad Obrera Nacional (1952): Actual UTN.'
+          ],
+          imageUrl: 'assets/pol_2.png'
+        },
+        {
+          period: '1976 - 1989',
+          title: 'Dictadura y Transición Democrática',
+          type: 'Estado Burocrático-Autoritario y Recuperación',
+          features: 'Ruptura del Estado de bienestar, represión, inicio del endeudamiento y políticas ortodoxas, seguida por la transición hacia el Estado de derecho.',
+          agenda: 'En la Dictadura: "Educación para el orden", represión, censura, disciplinamiento social (Operación Claridad) e inicio de la descentralización fiscal. En la Transición: "Educación para la democracia", democratización de las prácticas escolares y desmantelamiento del autoritarismo.',
+          laws: [
+            'Transferencias de escuelas primarias a las provincias (1978) bajo lógicas de ajuste fiscal.',
+            'Congreso Pedagógico Nacional (1984): Debate amplio sobre la reestructuración del sistema educativo tras la dictadura.'
+          ],
+          imageUrl: 'assets/pol_3.png'
+        },
+        {
+          period: '1990 - 2001',
+          title: 'Estado Post-Social / Neoliberal',
+          type: 'Estado Neoliberal / Post-social',
+          features: 'Apertura económica al mercado, Estado subsidiario, descentralización fiscal, privatizaciones, focalización de la política social (asistencialismo), "ciudadano como consumidor".',
+          agenda: 'Educación entendida como servicio y variable de ajuste. El Estado Nacional pierde las escuelas y pasa a ser un "Estado Evaluador". Políticas compensatorias y asistencialistas (Plan Social Educativo) para paliar la exclusión.',
+          laws: [
+            'Ley 24.049 de Transferencia (1992): Traspaso de escuelas secundarias y terciarias a las provincias.',
+            'Ley Federal de Educación 24.195 (1993): Creación de EGB y Polimodal, introduce los CBC.',
+            'Ley 24.521 de Educación Superior (1995): Habilita la lógica de mercado, arancelamientos velados y crea la CONEAU.'
+          ],
+          imageUrl: 'assets/pol_4.png'
+        },
+        {
+          period: '2003 - 2015',
+          title: 'Estado Nacional-Popular / Progresista',
+          type: 'Estado Post-neoliberal / Nacional-Popular',
+          features: 'Recuperación de la centralidad del Estado, impulso a la industria nacional, expansión de derechos, políticas orientadas a la inclusión social.',
+          agenda: 'La educación vuelve a concebirse como un bien público y un derecho social indelegable. Fuerte incremento del financiamiento educativo e inclusión a través de planes como FinEs y Conectar Igualdad. Regreso a la estructura clásica (Primaria/Secundaria) y extensión de la obligatoriedad.',
+          laws: [
+            'Ley 25.864 (2003): Fija un ciclo lectivo mínimo de 180 días de clase.',
+            'Ley de Educación Técnico Profesional 26.058 (2005): Recupera la especificidad de las escuelas técnicas.',
+            'Ley de Financiamiento Educativo 26.075 (2005): Inversión educativa al 6% del PBI.',
+            'Ley de Educación Nacional 26.206 (2006): Establece la obligatoriedad de la escuela secundaria.',
+            'Ley 26.150 (2006): Crea el Programa Nacional de Educación Sexual Integral (ESI).'
+          ],
+          imageUrl: 'assets/pol_5.png'
+        },
+        {
+          period: '2015 - 2019',
+          title: 'Neoliberalismo Tardío',
+          type: 'Neoliberalismo Tardío (Macrismo)',
+          features: 'Ajuste estructural, endeudamiento, reducción del Estado, desfinanciación de áreas públicas.',
+          agenda: 'Refundación orientada a las necesidades del mundo empresarial (CEO-gestión), jerarquización excesiva de la evaluación estandarizada (Pruebas Aprender), cierre de programas socioeducativos y descentralización administrativa hacia las provincias.',
+          laws: [
+            'Decreto 13/2015: Modifica la Ley de Ministerios, basando la asistencia en leyes de los 90.',
+            'Resolución CFE 285/16: Plan Estratégico "Argentina Enseña y Aprende".',
+            'Implementación del Operativo Aprender (2016) e incorporación de "Escuelas del Futuro" orientadas a robótica.'
+          ],
+          imageUrl: 'assets/pol_6.png'
+        }
+      ]
     }
   ]
 
@@ -696,6 +774,108 @@ function App() {
                     </div>
                   </div>
 
+                </div>
+              ) : activeSubject.id === 'politicas' ? (
+                // Politicas Socioeducativas Timeline View
+                <div className="p-6 sm:p-8 flex-1 flex flex-col gap-6 bg-slate-50 dark:bg-[#0a0d14]">
+                  
+                  {/* Header */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-xs text-emerald-600 dark:text-emerald-500 font-bold uppercase tracking-widest block">Línea de Tiempo</span>
+                    <h4 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-tight">
+                      Evolución del Estado Argentino
+                    </h4>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Navega por los distintos períodos históricos y sus modelos de política socioeducativa. (Scroll horizontal)
+                    </p>
+                  </div>
+
+                  {/* Horizontal Scrollable Timeline */}
+                  <div className="relative w-full rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-6 overflow-hidden">
+                    <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700 items-stretch">
+                      {activeSubject.timeline.map((item, idx) => (
+                        <div 
+                          key={idx} 
+                          onClick={() => setActiveClassIndex(idx)}
+                          className={`min-w-[260px] sm:min-w-[300px] snap-center cursor-pointer transition-all duration-300 flex flex-col gap-3 p-5 rounded-2xl border-2 ${
+                            activeClassIndex === idx 
+                              ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500 shadow-md transform scale-[1.02]' 
+                              : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/50'
+                          }`}
+                        >
+                          <span className={`text-xs font-black px-3 py-1.5 rounded-full inline-block w-max ${
+                            activeClassIndex === idx ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                          }`}>
+                            {item.period}
+                          </span>
+                          <h5 className={`font-bold text-base leading-tight ${
+                            activeClassIndex === idx ? 'text-emerald-900 dark:text-emerald-100' : 'text-slate-800 dark:text-slate-200'
+                          }`}>
+                            {item.title}
+                          </h5>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Selected Period Details */}
+                  {activeSubject.timeline[activeClassIndex] && (
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-2">
+                      
+                      {/* Left: Info */}
+                      <div className="lg:col-span-7 flex flex-col gap-6">
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Características del Estado</span>
+                            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded-md">{activeSubject.timeline[activeClassIndex].type}</span>
+                          </div>
+                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                            {activeSubject.timeline[activeClassIndex].features}
+                          </p>
+                        </div>
+
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm border-l-4 border-l-emerald-500">
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 block">Agenda Educativa</span>
+                          <p className="text-sm font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                            {activeSubject.timeline[activeClassIndex].agenda}
+                          </p>
+                        </div>
+                        
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <FileText size={16} className="text-emerald-500" />
+                            Legislación Sobresaliente
+                          </span>
+                          <ul className="space-y-3">
+                            {activeSubject.timeline[activeClassIndex].laws.map((law, i) => (
+                              <li key={i} className="text-sm text-slate-600 dark:text-slate-400 pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-emerald-500 before:rounded-full">
+                                {law}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Right: AI Image Cover */}
+                      <div className="lg:col-span-5 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden relative min-h-[400px]">
+                        <img 
+                          src={activeSubject.timeline[activeClassIndex].imageUrl} 
+                          alt={activeSubject.timeline[activeClassIndex].title}
+                          className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d14] via-[#0a0d14]/40 to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 p-8 w-full">
+                          <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold tracking-wider mb-4 inline-block uppercase">
+                            Ilustración IA
+                          </span>
+                          <h4 className="text-2xl font-black text-white leading-tight drop-shadow-md">
+                            {activeSubject.timeline[activeClassIndex].title}
+                          </h4>
+                        </div>
+                      </div>
+
+                    </div>
+                  )}
                 </div>
               ) : (
                 // Default placeholders view for other tabs
