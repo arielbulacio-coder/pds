@@ -818,28 +818,46 @@ function App() {
                   </div>
 
                   {/* Horizontal Scrollable Timeline */}
-                  <div className="relative w-full rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-6 overflow-hidden">
-                    <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700 items-stretch">
+                  <div className="relative w-full rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-8 overflow-hidden">
+                    
+                    {/* The Connecting Timeline Axis */}
+                    <div className="absolute top-[4.5rem] left-8 right-8 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full z-0 hidden md:block">
+                      <div className="absolute top-0 left-0 h-full bg-emerald-500 rounded-full transition-all duration-700" style={{ width: `${(activeClassIndex / (activeSubject.timeline.length - 1)) * 100}%` }}></div>
+                    </div>
+
+                    <div className="flex overflow-x-auto gap-6 pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700 items-stretch relative z-10">
                       {activeSubject.timeline.map((item, idx) => (
                         <div 
                           key={idx} 
                           onClick={() => setActiveClassIndex(idx)}
-                          className={`min-w-[260px] sm:min-w-[300px] snap-center cursor-pointer transition-all duration-300 flex flex-col gap-3 p-5 rounded-2xl border-2 ${
+                          className={`min-w-[280px] sm:min-w-[320px] snap-center cursor-pointer transition-all duration-300 flex flex-col gap-3 p-6 rounded-3xl border-2 relative ${
                             activeClassIndex === idx 
-                              ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500 shadow-md transform scale-[1.02]' 
-                              : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/50'
+                              ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500 shadow-xl shadow-emerald-900/10 transform scale-[1.02] z-20' 
+                              : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/50 hover:-translate-y-1 shadow-sm opacity-80 hover:opacity-100'
                           }`}
                         >
-                          <span className={`text-xs font-black px-3 py-1.5 rounded-full inline-block w-max ${
-                            activeClassIndex === idx ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                          {/* Timeline Node Marker */}
+                          <div className={`absolute -top-[1.65rem] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-slate-900 hidden md:flex items-center justify-center transition-all duration-500 z-30 ${
+                            activeClassIndex >= idx ? 'bg-emerald-500 scale-110' : 'bg-slate-200 dark:bg-slate-700'
                           }`}>
-                            {item.period}
-                          </span>
-                          <h5 className={`font-bold text-base leading-tight ${
-                            activeClassIndex === idx ? 'text-emerald-900 dark:text-emerald-100' : 'text-slate-800 dark:text-slate-200'
-                          }`}>
-                            {item.title}
-                          </h5>
+                            {activeClassIndex === idx && <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>}
+                          </div>
+
+                          <div className="flex flex-col items-center text-center mt-2">
+                            <span className={`text-[11px] font-black px-4 py-1.5 rounded-full inline-block tracking-widest uppercase mb-3 ${
+                              activeClassIndex === idx ? 'bg-emerald-600 text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                            }`}>
+                              {item.period}
+                            </span>
+                            <h5 className={`font-black text-xl leading-tight mb-2 ${
+                              activeClassIndex === idx ? 'text-emerald-900 dark:text-emerald-100' : 'text-slate-800 dark:text-slate-200'
+                            }`}>
+                              {item.title}
+                            </h5>
+                            <span className={`text-xs font-semibold ${
+                              activeClassIndex === idx ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500'
+                            }`}>{item.type}</span>
+                          </div>
                         </div>
                       ))}
                     </div>
