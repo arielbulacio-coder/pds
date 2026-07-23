@@ -215,6 +215,7 @@ function App() {
           period: '1853 - 1930',
           title: 'Estado Oligárquico-Liberal',
           type: 'Estado Liberal Oligárquico',
+          presidents: 'Mitre, Sarmiento, Avellaneda, Roca, Juárez Celman, Pellegrini, Yrigoyen, Alvear, entre otros.',
           features: 'Modelo agroexportador, patrimonialismo, democracia restringida (partidos de notables), individualismo, laicidad.',
           agenda: 'El objetivo central era la construcción de la idea de Nación, la homogeneización cultural frente a la inmigración masiva y la formación del ciudadano. Proceso de escolarización con fuertes pretensiones de masividad bajo un sistema de instrucción pública muy centralizado.',
           laws: [
@@ -229,6 +230,7 @@ function App() {
           period: '1930 - 1976',
           title: 'Estado Benefactor / Social',
           type: 'Nacional-Popular y Desarrollismo',
+          presidents: 'Uriburu, Justo, Ortiz, Castillo, Perón, Lonardi, Aramburu, Frondizi, Guido, Illia, Onganía, Lanusse, Isabel Perón.',
           features: 'Industrialismo por sustitución de importaciones (Estado interventor), garante de derechos sociales, interpenetración entre Estado y sociedad civil, organización sindical, igualitarismo.',
           agenda: 'El eje gira hacia la formación para el trabajo y la industria (teoría del capital humano/recursos humanos). Expansión y masificación del nivel medio y técnico. Creciente demanda de democratización del sistema educativo.',
           laws: [
@@ -243,6 +245,7 @@ function App() {
           period: '1976 - 1989',
           title: 'Dictadura y Transición Democrática',
           type: 'Estado Burocrático-Autoritario y Recuperación',
+          presidents: 'Videla, Viola, Galtieri, Bignone (Junta Militar) y Raúl Alfonsín.',
           features: 'Ruptura del Estado de bienestar, represión, inicio del endeudamiento y políticas ortodoxas, seguida por la transición hacia el Estado de derecho.',
           agenda: 'En la Dictadura: "Educación para el orden", represión, censura, disciplinamiento social (Operación Claridad) e inicio de la descentralización fiscal. En la Transición: "Educación para la democracia", democratización de las prácticas escolares y desmantelamiento del autoritarismo.',
           laws: [
@@ -255,6 +258,7 @@ function App() {
           period: '1990 - 2001',
           title: 'Estado Post-Social / Neoliberal',
           type: 'Estado Neoliberal / Post-social',
+          presidents: 'Carlos Menem, Fernando de la Rúa, Adolfo Rodríguez Saá.',
           features: 'Apertura económica al mercado, Estado subsidiario, descentralización fiscal, privatizaciones, focalización de la política social (asistencialismo), "ciudadano como consumidor".',
           agenda: 'Educación entendida como servicio y variable de ajuste. El Estado Nacional pierde las escuelas y pasa a ser un "Estado Evaluador". Políticas compensatorias y asistencialistas (Plan Social Educativo) para paliar la exclusión.',
           laws: [
@@ -268,6 +272,7 @@ function App() {
           period: '2003 - 2015',
           title: 'Estado Nacional-Popular / Progresista',
           type: 'Estado Post-neoliberal / Nacional-Popular',
+          presidents: 'Néstor Kirchner, Cristina Fernández de Kirchner.',
           features: 'Recuperación de la centralidad del Estado, impulso a la industria nacional, expansión de derechos, políticas orientadas a la inclusión social.',
           agenda: 'La educación vuelve a concebirse como un bien público y un derecho social indelegable. Fuerte incremento del financiamiento educativo e inclusión a través de planes como FinEs y Conectar Igualdad. Regreso a la estructura clásica (Primaria/Secundaria) y extensión de la obligatoriedad.',
           laws: [
@@ -283,6 +288,7 @@ function App() {
           period: '2015 - 2019',
           title: 'Neoliberalismo Tardío',
           type: 'Neoliberalismo Tardío (Macrismo)',
+          presidents: 'Mauricio Macri.',
           features: 'Ajuste estructural, endeudamiento, reducción del Estado, desfinanciación de áreas públicas.',
           agenda: 'Refundación orientada a las necesidades del mundo empresarial (CEO-gestión), jerarquización excesiva de la evaluación estandarizada (Pruebas Aprender), cierre de programas socioeducativos y descentralización administrativa hacia las provincias.',
           laws: [
@@ -874,9 +880,18 @@ function App() {
                             <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Características del Estado</span>
                             <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded-md">{activeSubject.timeline[activeClassIndex].type}</span>
                           </div>
-                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
                             {activeSubject.timeline[activeClassIndex].features}
                           </p>
+                          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 flex items-center gap-1.5">
+                              <User size={14} className="text-emerald-500" />
+                              Gobiernos / Presidencias Principales
+                            </span>
+                            <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                              {activeSubject.timeline[activeClassIndex].presidents}
+                            </p>
+                          </div>
                         </div>
 
                         <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm border-l-4 border-l-emerald-500">
