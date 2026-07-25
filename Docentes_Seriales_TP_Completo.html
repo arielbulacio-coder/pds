@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Trabajo Final: Docentes Seriales - UTN ISPT</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 2.2cm 2cm 2.2cm 2cm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      font-size: 11pt;
+      background-color: #ffffff;
+    }
+    .header-container {
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .institution-tag {
+      font-size: 9pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #2563eb;
+      margin-bottom: 5px;
+    }
+    h1 {
+      font-size: 22pt;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 13pt;
+      font-weight: 600;
+      color: #475569;
+    }
+    .meta-box {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #2563eb;
+      padding: 15px 20px;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 10pt;
+    }
+    .meta-item strong {
+      color: #0f172a;
+      display: block;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+    }
+    .meta-item span {
+      font-weight: 600;
+      color: #1e293b;
+    }
+    h2 {
+      font-size: 15pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-top: 30px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h3 {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #1e40af;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    h4 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    p {
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+    ul, ol {
+      margin-bottom: 15px;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+    .quote-box {
+      background-color: #f1f5f9;
+      border-left: 3px solid #64748b;
+      padding: 12px 16px;
+      margin: 15px 0;
+      font-style: italic;
+      color: #334155;
+      border-radius: 0 6px 6px 0;
+    }
+    .class-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      page-break-inside: avoid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .class-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .class-title {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .class-badge {
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      font-size: 8.5pt;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid #bfdbfe;
+    }
+    .class-subtitle {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 10px;
+    }
+    .tech-narrative-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tag-label {
+      font-weight: 700;
+      color: #2563eb;
+      font-size: 9.5pt;
+      text-transform: uppercase;
+    }
+    .relation-box {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 10pt;
+      color: #334155;
+      margin-top: 10px;
+    }
+    .relation-box strong {
+      color: #0f172a;
+    }
+    .flow-diagram {
+      font-family: "Courier New", Courier, monospace;
+      background-color: #0f172a;
+      color: #38bdf8;
+      padding: 18px;
+      border-radius: 8px;
+      font-size: 9.5pt;
+      line-height: 1.8;
+      white-space: pre;
+      overflow-x: auto;
+      margin: 15px 0 25px 0;
+      page-break-inside: avoid;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 15px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 8.5pt;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+    @media print {
+      body {
+        background-color: #ffffff;
+      }
+      .class-card, .meta-box, .flow-diagram {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-container">
+    <div>
+      <div class="institution-tag">Universidad Tecnológica Nacional · ISPT</div>
+      <h1>DOCENTES SERIALES</h1>
+      <div class="subtitle">Fundamentos de la Computación desde la Lente de Black Mirror</div>
+    </div>
+  </div>
+
+  <div class="meta-box">
+    <div class="meta-item">
+      <strong>Autor / Alumno</strong>
+      <span>Ariel Bulacio</span>
+    </div>
+    <div class="meta-item">
+      <strong>Asignatura de Comunicación</strong>
+      <span>Modelos y Técnicas de la Comunicación</span>
+    </div>
+    <div class="meta-item">
+      <strong>Docente a Cargo</strong>
+      <span>Profesora Mónica Delia Bardi</span>
+    </div>
+    <div class="meta-item">
+      <strong>Carrera de Formación</strong>
+      <span>Profesorado en Docencia Superior</span>
+    </div>
+    <div class="meta-item">
+      <strong>Asignatura Destinataria</strong>
+      <span>Fundamentos de la Computación</span>
+    </div>
+    <div class="meta-item">
+      <strong>Público Objetivo (Alumnos)</strong>
+      <span>Tecnicatura Universitaria en Desarrollo de Software</span>
+    </div>
+  </div>
+
+  <h2>Paso 1: Delimitación y Encuadre Narrativo</h2>
+
+  <h3>1. Problemática a resolver en la Educación Superior</h3>
+  <p>
+    La enseñanza de asignaturas troncales y técnicas como <strong>"Fundamentos de la Computación"</strong> en carreras de tecnología (como la Tecnicatura en Desarrollo de Software) suele sufrir de un enfoque excesivamente técnico-instrumental y de una "secuencia progresiva lineal" tradicional (Litwin, 2000). 
+  </p>
+  <p>
+    Los conceptos de hardware, representación de datos y arquitectura de sistemas se enseñan aislados de su impacto ético y social. Se requiere un hackeo curricular que inserte la dimensión crítica, comunicacional y humana en la computación técnica, permitiendo a los futuros desarrolladores comprender la responsabilidad social de sus implementaciones.
+  </p>
+
+  <h3>2. Ficha Técnica del Seminario</h3>
+  <ul>
+    <li><strong>Nombre del Taller / Seminario:</strong> "Docentes Seriales: Fundamentos de la Computación desde la Lente de Black Mirror"</li>
+    <li><strong>Duración Curricular:</strong> 4 clases de taller en modalidad presencial e híbrida.</li>
+    <li><strong>Enfoque Didáctico:</strong> Aprendizaje basado en problemas, análisis de casos audiovisuales y simulación interactiva de sistemas.</li>
+  </ul>
+
+  <h3>3. Elección de la Serie: Black Mirror (Netflix)</h3>
+  <p>La elección de esta serie como eje vertebrador didáctico se fundamenta en tres características estéticas y narrativas clave:</p>
+  <ol>
+    <li>
+      <strong>Extrapolación de Distopías Cercanas:</strong> Toma tecnologías actuales (redes sociales, IoT, IA, cookies) y las proyecta en un futuro inmediato donde la ética del programador se desdibuja, sirviendo como el "caso de estudio" perfecto para la reflexión crítica (Bitonte & Landeau, 2025).
+    </li>
+    <li>
+      <strong>Estructura Antológica Autónoma:</strong> Cada capítulo funciona como una obra independiente con su propio ecosistema de reglas, lo que permite recortar temáticas y aplicarlas directamente a unidades específicas de la materia de forma no secuencial.
+    </li>
+    <li>
+      <strong>Focalización Dramática de la Tecnología:</strong> La serie no se centra en explicar el hardware en sí, sino en cómo el diseño y el código de dicho hardware modifican la comunicación, la subjetividad y el comportamiento de los sujetos en el entorno posdigital (Maggio, 2022).
+    </li>
+  </ol>
+
+  <h2>Paso 2: Desarrollo Curricular de las 4 Clases</h2>
+
+  <!-- Clase 1 -->
+  <div class="class-card">
+    <div class="class-header">
+      <div class="class-title">Clase 1: La Arquitectura del Control</div>
+      <div class="class-badge">White Christmas (S02E04)</div>
+    </div>
+    <div class="class-subtitle">Modelo Von Neumann & CPU — Ciclos de Instrucción y Privilegios</div>
+    
+    <div class="tech-narrative-grid">
+      <div>
+        <span class="tag-label">Contenido Técnico:</span>
+        <p>Modelo de Arquitectura de Von Neumann, CPU, ciclos de instrucción computacional (Fetch-Decode-Execute) y jerarquía de modos de operación del procesador (Modo Usuario vs. Modo Kernel).</p>
+      </div>
+      <div>
+        <span class="tag-label">Análisis Narrativo:</span>
+        <p>Análisis del dispositivo "Cookie" (clones de consciencia digital encapsulados) como metáfora arquitectónica del control de subprocesos, asignación de tiempo de reloj (System Clock) y gestión de privilegios del sistema operativo.</p>
+      </div>
+    </div>
+
+    <div class="relation-box">
+      <strong>Vínculo Curricular con la Computación:</strong><br>
+      En "White Christmas", la consciencia clonada (Cookie) corre como un proceso virtual aislado dentro de una carcasa de hardware. El programador manipula el tiempo del sistema acelerándolo artificialmente, lo que representa alegóricamente el Reloj del Sistema de una CPU. Según la Unidad 1 del programa de Fundamentos de Computación, la CPU ejecuta el ciclo Fetch-Decode-Execute. La Cookie carece de privilegios sobre el entorno (modo Kernel), limitándose a ejecutar tareas de usuario sin soberanía. Esto ilustra magistralmente el control arquitectónico y hegemónico del Hardware sobre el Software.
+    </div>
+  </div>
+
+  <!-- Clase 2 -->
+  <div class="class-card">
+    <div class="class-header">
+      <div class="class-title">Clase 2: Datos, Algoritmos y Burbujas</div>
+      <div class="class-badge">Nosedive (S03E01)</div>
+    </div>
+    <div class="class-subtitle">Lógica Digital y Algoritmos Sociales — Cuantificación y Sesgos</div>
+    
+    <div class="tech-narrative-grid">
+      <div>
+        <span class="tag-label">Contenido Técnico:</span>
+        <p>Representación digital de la información, sistemas binarios, lógica booleana condicional, sesgos algorítmicos y generación de burbujas de filtro sociales.</p>
+      </div>
+      <div>
+        <span class="tag-label">Análisis Narrativo:</span>
+        <p>Evaluación de una sociedad donde las relaciones humanas y los estatus socioeconómicos están regidos por calificaciones binarias y ponderaciones algorítmicas de reputación en tiempo real.</p>
+      </div>
+    </div>
+
+    <div class="relation-box">
+      <strong>Vínculo Curricular con la Computación:</strong><br>
+      El episodio "Nosedive" presenta una sociedad cuantificada donde el valor humano se reduce a un número decimal de coma flotante. Este sistema procesa lógica booleana condicional para asignar privilegios de acceso (SI calificación &lt; X ENTONCES denegar servicio). Abordando la Unidad 3 (Representación de Datos y Lógica Digital), la serie nos permite evaluar críticamente cómo la codificación booleana y las fórmulas algorítmicas influyen directamente en la creación de "burbujas de filtro", demostrando que el diseño matemático de un algoritmo nunca es neutral, sino que produce estratificación, sesgo y exclusión social.
+    </div>
+  </div>
+
+  <!-- Clase 3 -->
+  <div class="class-card">
+    <div class="class-header">
+      <div class="class-title">Clase 3: Ciberseguridad y el Alma Digital</div>
+      <div class="class-badge">Shut Up and Dance (S03E03)</div>
+    </div>
+    <div class="class-subtitle">Sistemas Operativos y la Tríada CIA — Auditoría de Seguridad</div>
+    
+    <div class="tech-narrative-grid">
+      <div>
+        <span class="tag-label">Contenido Técnico:</span>
+        <p>Fundamentos de Ciberseguridad, privacidad, amenazas de red, vulnerabilidades de sistemas, malware, troyanos y la Tríada CIA (Confidencialidad, Integridad y Disponibilidad).</p>
+      </div>
+      <div>
+        <span class="tag-label">Análisis Narrativo:</span>
+        <p>Estudio de las consecuencias sistémicas y humanas devastadoras producidas por la pérdida absoluta de Confidencialidad a través de intrusiones con troyanos de acceso remoto (RAT) y chantaje digital.</p>
+      </div>
+    </div>
+
+    <div class="relation-box">
+      <strong>Vínculo Curricular con la Computación:</strong><br>
+      En "Shut Up and Dance", evidenciamos el colapso absoluto del pilar de Confidencialidad en la Tríada CIA, concepto central de la Unidad 4 de la materia. Un malware exfiltra los archivos privados de las víctimas a un servidor externo de comando y control. Esta vulnerabilidad permite que atacantes anónimos extorsionen a los usuarios mediante ingeniería social. El episodio funciona como caso de estudio primordial para debatir la responsabilidad ética del profesional en ciberseguridad y sistemas, y la importancia crítica de blindar la protección de datos en entornos altamente interconectados.
+    </div>
+  </div>
+
+  <!-- Clase 4 -->
+  <div class="class-card">
+    <div class="class-header">
+      <div class="class-title">Clase 4: Ética en la Era Posdigital</div>
+      <div class="class-badge">Joan Is Awful (S06E01)</div>
+    </div>
+    <div class="class-subtitle">IA Generativa & Contratos Digitales — Soberanía del Usuario</div>
+    
+    <div class="tech-narrative-grid">
+      <div>
+        <span class="tag-label">Contenido Técnico:</span>
+        <p>Ecosistemas de software, automatización avanzada, Inteligencia Artificial generativa, términos y condiciones de servicio (ToS), contratos digitales y soberanía tecnológica.</p>
+      </div>
+      <div>
+        <span class="tag-label">Análisis Narrativo:</span>
+        <p>Análisis de la expropiación de derechos de imagen e identidad en plataformas de streaming automatizadas mediante supercomputación cuántica y cláusulas contractuales abusivas.</p>
+      </div>
+    </div>
+
+    <div class="relation-box">
+      <strong>Vínculo Curricular con la Computación:</strong><br>
+      La protagonista de "Joan Is Awful" cede sin saberlo su identidad digital al aceptar los Términos de Servicio (ToS) abusivos de una plataforma de entretenimiento. Una supercomputadora procesa su vida cotidiana en tiempo real utilizando Inteligencia Artificial generativa para renderizar una serie sobre ella. Esto conecta con la Unidad 2 (El rol del Software y Cultura Digital). La narrativa ilustra cómo las licencias de software propietario y las interfaces legales opacas pueden despojar al usuario de su soberanía tecnológica, planteando un debate ético urgente sobre los límites legales de la IA y el código automatizado.
+    </div>
+  </div>
+
+  <h2>Paso 3: Propuesta de Diseño Didáctico y Reflexión</h2>
+
+  <h3>a. Resumen y Metodología de Diseño</h3>
+  <p>
+    El seminario se estructura como una <strong>"didáctica en vivo"</strong> (Maggio), implementando recorridos no lineales mediante el análisis y hackeo pedagógico de episodios de Black Mirror. 
+  </p>
+  <p>
+    En lugar de iniciar con la exposición teórica formal de la arquitectura de computadoras o la matemática booleana, cada clase comienza con un <em>"flashforward"</em> (proyección de un dilema ético y técnico del capítulo) que fuerza a los estudiantes a investigar los fundamentos computacionales que hacen posible dicho escenario, para luego plantear "soluciones de ingeniería o refactorización de código" que mitiguen el problema. 
+  </p>
+  <p>
+    La evaluación deja de ser una instancia sumativa tradicional de memorización y se transforma en la producción colaborativa en la nube de un <strong>"Manifiesto Ético de Diseño y Arquitectura de Software"</strong>, complementado con prácticas en simuladores de lógica y seguridad áulicos.
+  </p>
+
+  <h3>b. Esquema Funcional del Recorrido Didáctico</h3>
+  <div class="flow-diagram">[CLASE 1: WHITE CHRISTMAS] ──> Análisis del Kernel, Reloj de CPU y Consciencia Virtual
+         │
+[CLASE 2: NOSEDIVE]        ──> Simulación de Ponderación Algorítmica y Sesgo Booleano
+         │
+[CLASE 3: SHUT UP & DANCE] ──> Auditoría de Seguridad basada en la Tríada CIA
+         │
+[CLASE 4: JOAN IS AWFUL]   ──> Mesa Redonda sobre Ética, IA Generativa y Licencias ToS</div>
+
+  <h3>c. Reflexión Final del Autor</h3>
+  <div class="quote-box">
+    "El desarrollo de esta propuesta didáctica permitió romper la dicotomía tradicional entre lo puramente técnico y lo humanístico. Entender que la configuración de la CPU, los privilegios del kernel o la estructura de un algoritmo no son decisiones neutrales, sino actos de comunicación política e institucional, redefine por completo el rol del docente en carreras tecnológicas. Las series de ficción científica actúan aquí no como meros pasatiempos de entretenimiento, sino como auténticos simuladores conceptuales complejos que permiten 'ensayar' la futura performance moral y profesional del egresado técnico frente a los dilemas del mundo real."
+  </div>
+
+  <div class="footer">
+    <span>Profesorado en Docencia Superior — UTN ISPT</span>
+    <span>Trabajo Final: Docentes Seriales · Ariel Bulacio</span>
+  </div>
+
+</body>
+</html>
