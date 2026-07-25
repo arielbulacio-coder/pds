@@ -16,17 +16,17 @@ function App() {
       localStorage.setItem('theme', 'light')
     }
   }, [darkMode])
-  
+
   const [activeTab, setActiveTab] = useState('comunicacion')
   const [activeClassIndex, setActiveClassIndex] = useState(0)
   const [showVideo, setShowVideo] = useState(false)
 
   // Simulator States
   // Class 1: Instruction cycle
-  const [cpuStep, setCpuStep] = useState('idle') 
+  const [cpuStep, setCpuStep] = useState('idle')
   const [cpuClock, setCpuClock] = useState(0)
   const [cookieSanity, setCookieSanity] = useState(100)
-  
+
   // Class 2: Nosedive
   const [socialSlider, setSocialSlider] = useState(3.5)
   const [sincereInteraction, setSincereInteraction] = useState(true)
@@ -306,16 +306,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 dark:bg-[#0a0d14] dark:text-slate-200 font-sans transition-colors duration-500 selection:bg-blue-500/30">
-      
+
       {/* Premium Header */}
       <header className="border-b border-slate-200/80 dark:border-slate-800/60 bg-white/70 dark:bg-[#0a0d14]/70 backdrop-blur-xl sticky top-0 z-50 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-5">
             <div className="relative group">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-slate-400 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
-              <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZGaBEBRKRQX3r3_GoTgyPfQx9K2oeZtXouFTLid5AYw&s=10" 
-                alt="UTN Logo" 
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZGaBEBRKRQX3r3_GoTgyPfQx9K2oeZtXouFTLid5AYw&s=10"
+                alt="UTN Logo"
                 className="relative h-14 w-auto object-contain rounded-md bg-white p-1.5 ring-1 ring-slate-200 dark:ring-slate-800 shadow-sm"
               />
             </div>
@@ -328,7 +328,7 @@ function App() {
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 text-xs font-semibold text-blue-700 dark:text-blue-400">
               <User size={14} />
@@ -348,12 +348,12 @@ function App() {
 
       {/* Main content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col gap-10">
-        
+
         {/* Dynamic Hero Section */}
         <section className="relative overflow-hidden rounded-3xl bg-slate-900 text-white shadow-2xl border border-slate-800">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-slate-900 to-black z-0"></div>
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl z-0"></div>
-          
+
           <div className="relative z-10 p-8 sm:p-12 lg:p-16 flex flex-col items-start max-w-4xl">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-6 backdrop-blur-sm">
               <BookOpen size={14} />
@@ -386,17 +386,15 @@ function App() {
                     setActiveTab(sub.id)
                     setActiveClassIndex(0)
                   }}
-                  className={`group flex items-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${
-                    isSelected 
-                      ? 'bg-white dark:bg-slate-900 border-blue-300 dark:border-blue-800/60 shadow-lg shadow-blue-900/5 ring-1 ring-blue-500/20' 
-                      : 'bg-white/50 dark:bg-slate-900/30 border-slate-200 dark:border-slate-800/60 hover:bg-white dark:hover:bg-slate-800/80 hover:shadow-md'
-                  }`}
+                  className={`group flex items-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${isSelected
+                    ? 'bg-white dark:bg-slate-900 border-blue-300 dark:border-blue-800/60 shadow-lg shadow-blue-900/5 ring-1 ring-blue-500/20'
+                    : 'bg-white/50 dark:bg-slate-900/30 border-slate-200 dark:border-slate-800/60 hover:bg-white dark:hover:bg-slate-800/80 hover:shadow-md'
+                    }`}
                 >
-                  <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${
-                    isSelected 
-                      ? 'bg-blue-600 text-white shadow-md' 
-                      : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400'
-                  }`}>
+                  <div className={`p-3 rounded-xl shrink-0 transition-all duration-300 ${isSelected
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400'
+                    }`}>
                     <Icon size={22} strokeWidth={isSelected ? 2.5 : 2} />
                   </div>
                   <div className="pt-0.5">
@@ -415,10 +413,10 @@ function App() {
 
         {/* Tab Detail View */}
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
-          
+
           {/* Left Sidebar Info */}
           <div className="xl:col-span-4 flex flex-col gap-6">
-            
+
             {/* Consigna & Context Card */}
             {activeSubject.id === 'comunicacion' && (
               <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
@@ -430,7 +428,7 @@ function App() {
                       Contexto del Trabajo Práctico
                     </h3>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-base font-bold text-blue-700 dark:text-blue-400 mb-1">{activeSubject.consigna.title}</h4>
@@ -438,7 +436,7 @@ function App() {
                         {activeSubject.consigna.description}
                       </p>
                     </div>
-                    
+
                     <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800">
                       <span className="block text-xs font-semibold text-slate-500 dark:text-slate-500 uppercase tracking-wider mb-2">Problemática Detectada</span>
                       <p className="text-sm text-slate-700 dark:text-slate-300 font-medium italic">
@@ -451,6 +449,19 @@ function App() {
                       <li><strong className="text-slate-800 dark:text-slate-200">Destinatarios:</strong> {activeSubject.consigna.courseTarget}</li>
                       <li><strong className="text-slate-800 dark:text-slate-200">Serie elegida:</strong> Black Mirror (Netflix)</li>
                     </ul>
+
+                    <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+                      <a
+                        href="Docentes_Seriales_TP_Completo.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full flex items-center justify-center gap-2 p-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs shadow-lg shadow-blue-600/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <FileText size={16} />
+                        <span>Ver Trabajo Práctico en PDF</span>
+                        <ExternalLink size={14} className="ml-auto opacity-80" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -465,17 +476,15 @@ function App() {
                     <button
                       key={idx}
                       onClick={() => setActiveClassIndex(idx)}
-                      className={`w-full text-left p-4 rounded-2xl transition-all cursor-pointer border ${
-                        activeClassIndex === idx 
-                          ? 'bg-blue-600 text-white border-blue-600 shadow-md transform scale-[1.02]' 
-                          : 'bg-slate-50 dark:bg-[#0f1420] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-800/50 hover:bg-white dark:hover:bg-slate-800'
-                      }`}
+                      className={`w-full text-left p-4 rounded-2xl transition-all cursor-pointer border ${activeClassIndex === idx
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-md transform scale-[1.02]'
+                        : 'bg-slate-50 dark:bg-[#0f1420] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-800/50 hover:bg-white dark:hover:bg-slate-800'
+                        }`}
                     >
                       <div className="flex justify-between items-start mb-1.5">
                         <span className="font-bold text-sm leading-tight pr-4">{cls.title}</span>
-                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${
-                          activeClassIndex === idx ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-500'
-                        }`}>
+                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap ${activeClassIndex === idx ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-500'
+                          }`}>
                           {cls.episode.split(' ')[0]}
                         </span>
                       </div>
@@ -513,7 +522,7 @@ function App() {
           {/* Right Main Interactive Area */}
           <div className="xl:col-span-8">
             <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col h-full min-h-[700px]">
-              
+
               {/* Header */}
               <div className="bg-slate-50 dark:bg-slate-900/60 px-6 sm:px-8 py-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
@@ -524,20 +533,34 @@ function App() {
                     {activeSubject.id === 'comunicacion' ? 'Integración de teoría computacional y cultura audiovisual' : 'Espacio de simulación de proyectos'}
                   </p>
                 </div>
-                <span className={`text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full border ${
-                  activeSubject.id === 'comunicacion' 
-                    ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800' 
+                <div className="flex items-center gap-3 shrink-0">
+                  {activeSubject.id === 'comunicacion' && (
+                    <a
+                      href="Docentes_Seriales_TP_Completo.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 transition-all cursor-pointer"
+                      title="Abrir informe completo en PDF"
+                    >
+                      <FileText size={15} />
+                      <span className="hidden sm:inline">Informe PDF</span>
+                      <ExternalLink size={13} />
+                    </a>
+                  )}
+                  <span className={`text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full border ${activeSubject.id === 'comunicacion'
+                    ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800'
                     : 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:border-amber-800'
-                }`}>
-                  {activeSubject.id === 'comunicacion' ? 'Activo' : 'Boceto'}
-                </span>
+                    }`}>
+                    {activeSubject.id === 'comunicacion' ? 'Activo' : 'Boceto'}
+                  </span>
+                </div>
               </div>
 
               {/* Body */}
               {activeSubject.id === 'comunicacion' ? (
                 // Docentes Seriales Main View
                 <div className="p-6 sm:p-8 flex-1 flex flex-col gap-8 bg-white dark:bg-[#0a0d14]">
-                  
+
                   {/* Title and Episode Info */}
                   <div className="flex flex-col md:flex-row gap-6 justify-between items-start">
                     <div className="flex-1">
@@ -578,9 +601,9 @@ function App() {
                     <div className="flex flex-col gap-2">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Análisis Didáctico</span>
                       <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 h-full overflow-hidden flex flex-col">
-                        <img 
-                          src={activeSubject.classes[activeClassIndex].imageUrl} 
-                          alt="Ilustración IA del Seminario" 
+                        <img
+                          src={activeSubject.classes[activeClassIndex].imageUrl}
+                          alt="Ilustración IA del Seminario"
                           className="w-full h-40 sm:h-48 object-cover border-b border-slate-200 dark:border-slate-800"
                         />
                         <div className="p-5 sm:p-6 flex-1">
@@ -602,7 +625,7 @@ function App() {
                     </div>
 
                     <div className="bg-white dark:bg-slate-900/80 p-6 sm:p-8 rounded-3xl border shadow-inner border-slate-200 dark:border-slate-800">
-                      
+
                       {activeSubject.classes[activeClassIndex].type === 'cpu' && (
                         <div className="flex flex-col gap-6">
                           <div className="flex items-center justify-between">
@@ -619,11 +642,10 @@ function App() {
 
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                             {['idle', 'fetch', 'decode', 'execute'].map((stepName) => (
-                              <div key={stepName} className={`p-4 rounded-2xl border-2 transition-all duration-300 text-center ${
-                                cpuStep === stepName 
-                                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border-blue-500 scale-[1.02] shadow-md' 
-                                  : 'bg-slate-50 dark:bg-slate-950 text-slate-400 border-slate-200 dark:border-slate-800 opacity-70'
-                              }`}>
+                              <div key={stepName} className={`p-4 rounded-2xl border-2 transition-all duration-300 text-center ${cpuStep === stepName
+                                ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border-blue-500 scale-[1.02] shadow-md'
+                                : 'bg-slate-50 dark:bg-slate-950 text-slate-400 border-slate-200 dark:border-slate-800 opacity-70'
+                                }`}>
                                 <span className="block font-black text-sm uppercase tracking-widest">{stepName}</span>
                               </div>
                             ))}
@@ -662,12 +684,12 @@ function App() {
                               <span className="font-bold text-slate-700 dark:text-slate-300">Puntuación Base (Variable Continua)</span>
                               <span className="font-black text-lg text-blue-600 dark:text-blue-400">{socialSlider.toFixed(1)} ★</span>
                             </div>
-                            <input 
-                              type="range" 
-                              min="0.1" 
-                              max="5.0" 
-                              step="0.1" 
-                              value={socialSlider} 
+                            <input
+                              type="range"
+                              min="0.1"
+                              max="5.0"
+                              step="0.1"
+                              value={socialSlider}
                               onChange={(e) => setSocialSlider(parseFloat(e.target.value))}
                               className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
                             />
@@ -693,13 +715,12 @@ function App() {
                               </div>
                             </div>
                             <div className="flex-1">
-                              <div className={`p-4 rounded-2xl border ${
-                                calculateFinalRating() >= 4.0 
-                                  ? 'bg-emerald-100 border-emerald-300 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-400' 
-                                  : calculateFinalRating() >= 2.0 
+                              <div className={`p-4 rounded-2xl border ${calculateFinalRating() >= 4.0
+                                ? 'bg-emerald-100 border-emerald-300 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-400'
+                                : calculateFinalRating() >= 2.0
                                   ? 'bg-amber-100 border-amber-300 text-amber-800 dark:bg-amber-900/30 dark:border-amber-800 dark:text-amber-400'
                                   : 'bg-rose-100 border-rose-300 text-rose-800 dark:bg-rose-900/30 dark:border-rose-800 dark:text-rose-400'
-                              }`}>
+                                }`}>
                                 <span className="font-bold text-sm block mb-1">Estatus en el Sistema:</span>
                                 <p className="text-sm leading-snug">
                                   {calculateFinalRating() >= 4.0 ? 'Acceso Premium habilitado. Beneficios sociales activos.' : calculateFinalRating() >= 2.0 ? 'Acceso Estándar. Funciones limitadas.' : 'Bloqueado. Excluido del ecosistema social (Zero Tolerance).'}
@@ -713,7 +734,7 @@ function App() {
                       {activeSubject.classes[activeClassIndex].type === 'security' && (
                         <div className="flex flex-col gap-6">
                           <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Activa o desactiva los pilares de la seguridad de la información para simular vulnerabilidades.</p>
-                          
+
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <label className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all ${!confidentialityOff ? 'bg-emerald-50 dark:bg-emerald-900/10 border-emerald-500/50 hover:bg-emerald-100' : 'bg-rose-50 dark:bg-rose-900/10 border-rose-500 hover:bg-rose-100'}`}>
                               <input type="checkbox" checked={confidentialityOff} onChange={(e) => setConfidentialityOff(e.target.checked)} className="sr-only" />
@@ -732,20 +753,18 @@ function App() {
                             </label>
                           </div>
 
-                          <div className={`mt-2 p-6 rounded-3xl border-2 shadow-sm transition-colors ${
-                            confidentialityOff || integrityOff || availabilityOff 
-                              ? 'bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900/50' 
-                              : 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900/50'
-                          }`}>
+                          <div className={`mt-2 p-6 rounded-3xl border-2 shadow-sm transition-colors ${confidentialityOff || integrityOff || availabilityOff
+                            ? 'bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-900/50'
+                            : 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900/50'
+                            }`}>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
                               <span className="font-bold text-slate-700 dark:text-slate-300">Diagnóstico del Entorno:</span>
-                              <span className={`inline-block px-4 py-1.5 rounded-full font-black text-sm uppercase tracking-wider ${
-                                confidentialityOff && integrityOff && availabilityOff 
-                                  ? 'bg-rose-600 text-white' 
-                                  : (confidentialityOff || integrityOff || availabilityOff) 
-                                  ? 'bg-amber-500 text-white' 
+                              <span className={`inline-block px-4 py-1.5 rounded-full font-black text-sm uppercase tracking-wider ${confidentialityOff && integrityOff && availabilityOff
+                                ? 'bg-rose-600 text-white'
+                                : (confidentialityOff || integrityOff || availabilityOff)
+                                  ? 'bg-amber-500 text-white'
                                   : 'bg-emerald-500 text-white'
-                              }`}>
+                                }`}>
                                 {confidentialityOff && integrityOff && availabilityOff ? 'Brecha Crítica (100%)' : (confidentialityOff || integrityOff || availabilityOff) ? 'Sistema Vulnerado' : 'Entorno Seguro'}
                               </span>
                             </div>
@@ -762,7 +781,7 @@ function App() {
                             <h6 className="font-black text-slate-800 dark:text-slate-200 mb-4 text-lg">Contrato de Licencia de Usuario Final (EULA)</h6>
                             <div className="flex flex-col gap-4">
                               <label className="flex items-start gap-3 cursor-pointer group">
-                                <input type="checkbox" checked={tosAcceptAll} onChange={(e) => { setTosAcceptAll(e.target.checked); if(e.target.checked){setTosImageRights(true); setTosGenerativeAi(true)} }} className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
+                                <input type="checkbox" checked={tosAcceptAll} onChange={(e) => { setTosAcceptAll(e.target.checked); if (e.target.checked) { setTosImageRights(true); setTosGenerativeAi(true) } }} className="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer" />
                                 <div>
                                   <span className="font-bold text-slate-800 dark:text-slate-200 text-base block group-hover:text-blue-600 transition-colors">He leído y acepto los Términos de Servicio Completos</span>
                                   <span className="text-xs text-slate-500">Obligatorio para acceder a la plataforma.</span>
@@ -781,11 +800,10 @@ function App() {
                             </div>
                           </div>
 
-                          <div className={`p-6 rounded-3xl border-2 transition-all ${
-                            tosImageRights && tosGenerativeAi 
-                              ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-900/80 shadow-lg shadow-rose-900/10' 
-                              : 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-900/80'
-                          }`}>
+                          <div className={`p-6 rounded-3xl border-2 transition-all ${tosImageRights && tosGenerativeAi
+                            ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-900/80 shadow-lg shadow-rose-900/10'
+                            : 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-900/80'
+                            }`}>
                             <div className="flex gap-4 items-start">
                               <div className={`p-3 rounded-full ${tosImageRights && tosGenerativeAi ? 'bg-rose-200 text-rose-700 dark:bg-rose-900/50 dark:text-rose-400' : 'bg-emerald-200 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400'}`}>
                                 <AlertTriangle size={24} />
@@ -795,8 +813,8 @@ function App() {
                                   Estado de Soberanía Digital
                                 </span>
                                 <p className={`text-sm font-medium leading-relaxed ${tosImageRights && tosGenerativeAi ? 'text-rose-700 dark:text-rose-400' : 'text-emerald-700 dark:text-emerald-400'}`}>
-                                  {tosImageRights && tosGenerativeAi 
-                                    ? 'ALERTA TIPO "JOAN IS AWFUL": Has cedido el control legal y técnico de tu persona digital. El ecosistema automatizado de la corporación ahora genera contenido con tu avatar sin tu consentimiento expreso.' 
+                                  {tosImageRights && tosGenerativeAi
+                                    ? 'ALERTA TIPO "JOAN IS AWFUL": Has cedido el control legal y técnico de tu persona digital. El ecosistema automatizado de la corporación ahora genera contenido con tu avatar sin tu consentimiento expreso.'
                                     : 'Soberanía Activa. Tus datos biométricos y propiedad intelectual están protegidos bajo tu control frente a la automatización de terceros.'}
                                 </p>
                               </div>
@@ -811,7 +829,7 @@ function App() {
               ) : activeSubject.id === 'politicas' ? (
                 // Politicas Socioeducativas Timeline View
                 <div className="p-6 sm:p-8 flex-1 flex flex-col gap-6 bg-slate-50 dark:bg-[#0a0d14]">
-                  
+
                   {/* Header */}
                   <div className="flex flex-col gap-2">
                     <span className="text-xs text-emerald-600 dark:text-emerald-500 font-bold uppercase tracking-widest block">Línea de Tiempo</span>
@@ -825,7 +843,7 @@ function App() {
 
                   {/* Horizontal Scrollable Timeline */}
                   <div className="relative w-full rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm p-8 overflow-hidden">
-                    
+
                     {/* The Connecting Timeline Axis */}
                     <div className="absolute top-[4.5rem] left-8 right-8 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full z-0 hidden md:block">
                       <div className="absolute top-0 left-0 h-full bg-emerald-500 rounded-full transition-all duration-700" style={{ width: `${(activeClassIndex / (activeSubject.timeline.length - 1)) * 100}%` }}></div>
@@ -833,36 +851,31 @@ function App() {
 
                     <div className="flex overflow-x-auto gap-6 pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700 items-stretch relative z-10">
                       {activeSubject.timeline.map((item, idx) => (
-                        <div 
-                          key={idx} 
+                        <div
+                          key={idx}
                           onClick={() => setActiveClassIndex(idx)}
-                          className={`min-w-[280px] sm:min-w-[320px] snap-center cursor-pointer transition-all duration-300 flex flex-col gap-3 p-6 rounded-3xl border-2 relative ${
-                            activeClassIndex === idx 
-                              ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500 shadow-xl shadow-emerald-900/10 transform scale-[1.02] z-20' 
-                              : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/50 hover:-translate-y-1 shadow-sm opacity-80 hover:opacity-100'
-                          }`}
+                          className={`min-w-[280px] sm:min-w-[320px] snap-center cursor-pointer transition-all duration-300 flex flex-col gap-3 p-6 rounded-3xl border-2 relative ${activeClassIndex === idx
+                            ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500 shadow-xl shadow-emerald-900/10 transform scale-[1.02] z-20'
+                            : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-800/50 hover:-translate-y-1 shadow-sm opacity-80 hover:opacity-100'
+                            }`}
                         >
                           {/* Timeline Node Marker */}
-                          <div className={`absolute -top-[1.65rem] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-slate-900 hidden md:flex items-center justify-center transition-all duration-500 z-30 ${
-                            activeClassIndex >= idx ? 'bg-emerald-500 scale-110' : 'bg-slate-200 dark:bg-slate-700'
-                          }`}>
+                          <div className={`absolute -top-[1.65rem] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-slate-900 hidden md:flex items-center justify-center transition-all duration-500 z-30 ${activeClassIndex >= idx ? 'bg-emerald-500 scale-110' : 'bg-slate-200 dark:bg-slate-700'
+                            }`}>
                             {activeClassIndex === idx && <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>}
                           </div>
 
                           <div className="flex flex-col items-center text-center mt-2">
-                            <span className={`text-[11px] font-black px-4 py-1.5 rounded-full inline-block tracking-widest uppercase mb-3 ${
-                              activeClassIndex === idx ? 'bg-emerald-600 text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
-                            }`}>
+                            <span className={`text-[11px] font-black px-4 py-1.5 rounded-full inline-block tracking-widest uppercase mb-3 ${activeClassIndex === idx ? 'bg-emerald-600 text-white shadow-md' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                              }`}>
                               {item.period}
                             </span>
-                            <h5 className={`font-black text-xl leading-tight mb-2 ${
-                              activeClassIndex === idx ? 'text-emerald-900 dark:text-emerald-100' : 'text-slate-800 dark:text-slate-200'
-                            }`}>
+                            <h5 className={`font-black text-xl leading-tight mb-2 ${activeClassIndex === idx ? 'text-emerald-900 dark:text-emerald-100' : 'text-slate-800 dark:text-slate-200'
+                              }`}>
                               {item.title}
                             </h5>
-                            <span className={`text-xs font-semibold ${
-                              activeClassIndex === idx ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500'
-                            }`}>{item.type}</span>
+                            <span className={`text-xs font-semibold ${activeClassIndex === idx ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500'
+                              }`}>{item.type}</span>
                           </div>
                         </div>
                       ))}
@@ -872,7 +885,7 @@ function App() {
                   {/* Selected Period Details */}
                   {activeSubject.timeline[activeClassIndex] && (
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-2">
-                      
+
                       {/* Left: Info */}
                       <div className="lg:col-span-7 flex flex-col gap-6">
                         <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
@@ -900,7 +913,7 @@ function App() {
                             {activeSubject.timeline[activeClassIndex].agenda}
                           </p>
                         </div>
-                        
+
                         <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
                           <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                             <FileText size={16} className="text-emerald-500" />
@@ -918,8 +931,8 @@ function App() {
 
                       {/* Right: AI Image Cover */}
                       <div className="lg:col-span-5 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden relative min-h-[400px]">
-                        <img 
-                          src={activeSubject.timeline[activeClassIndex].imageUrl} 
+                        <img
+                          src={activeSubject.timeline[activeClassIndex].imageUrl}
                           alt={activeSubject.timeline[activeClassIndex].title}
                           className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
                         />
@@ -961,7 +974,7 @@ function App() {
                             <button key={i} onClick={() => setActiveClassIndex(i)} className={`text-left p-3 rounded-xl transition-all border ${activeClassIndex === i ? 'bg-blue-600 border-blue-600 text-white shadow-md' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 hover:border-blue-300 text-slate-700 dark:text-slate-300'}`}>
                               <div className="flex items-center gap-2 mb-1">
                                 <PlayCircle size={14} className={activeClassIndex === i ? 'text-blue-200' : 'text-blue-500'} />
-                                <span className="text-xs font-bold uppercase tracking-wider">Video {i+1}</span>
+                                <span className="text-xs font-bold uppercase tracking-wider">Video {i + 1}</span>
                               </div>
                               <span className="text-sm font-medium block truncate" title={vid.title}>{vid.title}</span>
                             </button>
@@ -977,7 +990,7 @@ function App() {
                     <div className="xl:col-span-5 flex flex-col gap-4">
                       <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-lg border border-slate-800 relative">
                         {activeSubject.videos[activeClassIndex] ? (
-                          <iframe 
+                          <iframe
                             src={activeSubject.videos[activeClassIndex].url}
                             title={activeSubject.videos[activeClassIndex].title}
                             className="w-full h-full absolute inset-0"
@@ -1029,7 +1042,7 @@ function App() {
                     <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
                       {activeSubject.demoDescription}
                     </p>
-                    
+
                     <div className="p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-4">Inputs Simulados (En Desarrollo)</span>
                       <div className="flex flex-col gap-3 mb-6">
